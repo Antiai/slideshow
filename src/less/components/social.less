@@ -1,0 +1,53 @@
+.social {
+  min-width: @minWidth;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+
+  &--open {
+    position: absolute;
+    display: flex;
+    background-color: fade(@socialBackground, 60%);
+
+    @media @mobileAndTablet {
+      bottom: @galleryFooterHeightMobile;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: @socialHeightMobile;
+    }
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 50px;
+    }
+  }
+
+  &__link {
+    display: block;
+
+    @media @mobileAndTablet {
+      width: 73px;
+      height: 73px;
+    }
+
+    &--pinterest {
+      background-color: @socialPinterestLightBackground;
+    }
+
+    &--facebook {
+      background-color: @socialFacebookLightBackground;
+    }
+
+    &--google {
+      background-color: @socialGoogleLightBackground;
+    }
+
+    &--twitter {
+      background-color: @socialTwitterLightBackground;
+    }
+  }
+}

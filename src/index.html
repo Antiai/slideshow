@@ -10,38 +10,58 @@
 <body>
   <main class="main">
     <div class="main__wrapper">
-      <h1>Lorem Ipsum</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit architecto accusantium consequatur ipsum sequi aliquam, praesentium magni ab sit magnam sunt officia recusandae similique quaerat libero quam sint, mollitia id. Dolores autem earum illum, error obcaecati delectus, fuga assumenda, excepturi, impedit et sit. Est voluptatum dolorum laboriosam blanditiis, iusto laudantium aliquam beatae quibusdam sint, tempore distinctio possimus sit temporibus corporis voluptatem accusantium at impedit quis deleniti esse autem eum adipisci veniam, exercitationem repellendus. Accusantium delectus voluptatem perferendis molestiae ad sequi temporibus sit repellat quasi quae sed culpa fugiat in dignissimos ex facilis alias quam, eligendi consectetur laborum quod? Molestiae ullam alias quo obcaecati voluptatum fugiat repellendus eligendi exercitationem, beatae recusandae dolores error porro mollitia voluptates blanditiis, a id rem quisquam! Odit enim possimus aspernatur in quibusdam adipisci reprehenderit qui, ipsa sapiente fugiat dolores nostrum accusantium accusamus dolorem temporibus ducimus necessitatibus, sed, delectus blanditiis deserunt eum laborum aperiam magni impedit. Minus!</p>
-      <a class="" href="#">Start Slideshow</a>
+      <h1 class="main__title">Lorem Ipsum</h1>
+      <p class="main__content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit architecto accusantium consequatur ipsum sequi aliquam, praesentium magni ab sit magnam sunt officia recusandae similique quaerat libero quam sint, mollitia id. Dolores autem earum illum, error obcaecati delectus, fuga assumenda, excepturi, impedit et sit. Est voluptatum dolorum laboriosam blanditiis, iusto laudantium aliquam beatae quibusdam sint, tempore distinctio possimus sit temporibus corporis voluptatem accusantium at impedit quis deleniti esse autem eum adipisci veniam, exercitationem repellendus. Accusantium delectus voluptatem perferendis molestiae ad sequi temporibus sit repellat quasi quae sed culpa fugiat in dignissimos ex facilis alias quam, eligendi consectetur laborum quod? Molestiae ullam alias quo obcaecati voluptatum fugiat repellendus eligendi exercitationem, beatae recusandae dolores error porro mollitia voluptates blanditiis, a id rem quisquam! Odit enim possimus aspernatur in quibusdam adipisci reprehenderit qui, ipsa sapiente fugiat dolores nostrum accusantium accusamus dolorem temporibus ducimus necessitatibus, sed, delectus blanditiis deserunt eum laborum aperiam magni impedit. Minus!</p>
+      <a class="main__button" href="#">Start Slideshow</a>
     </div>
   </main>
   <section class="gallery">
     <div class="gallery__header">
-      <a href="#" class="gallery__close">Close gallery</a>
+      <div class="gallery__header-ad">Ad</div>
+      <a href="#" class="gallery__toggle"><span class="hidden">Close gallery</span></a>
     </div>
     <div class="gallery__wrapper">
       <section class="slideshow">
-        <p class="slideshow__counter"><span class="slideshow__number">1</span>/<span class="slideshow__quantity">10</span></p>
         <div class="slideshow__container">
-          <div class="slideshow__item"><img src="http://placehold.it/513x766" width="513" height="766" alt="Slide-1"></div>
+          <div class="slideshow__counter"><span class="slideshow__number">1</span>/<span class="slideshow__quantity">10</span></div>
+          <div class="slideshow__item  slideshow__item--active">
+            <img class="slideshow__photo  slideshow__photo--active" src="img/gallery/photo-1-desktop@1x.jpg" srcset="img/gallery/photo-1-desktop@2x.jpg 2x" width="513" height="766" alt="Slide-1">
+          </div>
         </div>
         <div class="slideshow__btn-set">
           <button type="button" class="slideshow__btn  slideshow__btn--prev"><span class="hidden">Previous</span></button>
           <button type="button" class="slideshow__btn  slideshow__btn--next"><span class="hidden">Next</span></button>
         </div>
       </section>
+      <ul class="social  social--open">
+        <li class="social__item">
+          <a href="#" class="social__link  social__link--pinterest"><span class="hidden">Pinterest</span></a>
+        </li>
+        <li class="social__item">
+          <a href="#" class="social__link  social__link--facebook"><span class="hidden">Facebook</span></a>
+        </li>
+        <li class="social__item">
+          <a href="#" class="social__link  social__link--google"><span class="hidden">Google+</span></a>
+        </li>
+        <li class="social__item">
+          <a href="#" class="social__link  social__link--twitter"><span class="hidden">Twitter</span></a>
+        </li>
+      </ul>
     </div>
     <div class="gallery__footer">
       <div class="gallery__logo">
-        <img src="http://placehold.it/93x24" width="93" height="24" alt="Logo">
+        <picture>
+          <source media="(min-width: 1050px)" srcset="img/logo/logo@2x.png 2x, img/logo/logo@1x.png 1x">
+          <img class="gallery__logo-icon" src="img/logo/logo-mobile@1x.png" srcset="img/logo/logo-mobile@2x.png 2x" width="150" height="40" alt="Logo">
+        </picture>
       </div>
       <div class="gallery__container">
-        <p class="gallery__button-label">Share</p>
-        <a href="#" class="gallery__button"><img src="http://placehold.it/18x18" width="18" height="18" alt=""></a>
+        <div class="gallery__button-label">Share</div>
+        <a href="#" class="gallery__button"><img class="gallery__icon" src="http://placehold.it/18x18" width="18" height="18" alt=""></a>
       </div>
       <div class="gallery__container">
-        <p class="gallery__button-label">Thumb</p>
-        <a href="#" class="gallery__button"><img src="http://placehold.it/23x23" width="23" height="23" alt=""></a>
+        <div class="gallery__button-label">Thumb</div>
+        <a href="#" class="gallery__button"><img class="gallery__icon" src="http://placehold.it/23x23" width="23" height="23" alt=""></a>
       </div>
     </div>
   </section>

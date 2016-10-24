@@ -1,0 +1,161 @@
+.slideshow {
+  position: relative;
+  height: 100%;
+
+  &__counter {
+    line-height: 26px;
+    position: absolute;
+    z-index: 2;
+    width: 101px;
+    margin-left: 10px;
+    text-align: center;
+    background-color: fade(@counterBackground, 60%);
+
+    @media @tabletOnly {
+      margin-top: 23px;
+    }
+
+    @media @mobileAndTablet {
+      font-size: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    @media @desktop {
+      font-size: 12px;
+    }
+  }
+
+  &__container {
+    min-width: @minWidth;
+    height: 100%;
+  }
+
+  &__item {
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 0;
+    text-align: center;
+
+    @media @mobileOnly {
+      padding-left: 33px;
+      padding-right: 33px;
+    }
+
+    &::before {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  &__photo {
+    position: relative;
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__btn-set {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    min-width: @minWidth;
+    transform: translateY(-50%);
+
+    @media @mobileAndTablet {
+      padding-right: 21px;
+      padding-left: 21px;
+    }
+
+    @media @desktop {
+      padding-right: 25px;
+      padding-left: 25px;
+    }
+  }
+
+  &__btn {
+    padding: 0;
+    position: relative;
+    display: block;
+    border: none;
+    border-radius: 50%;
+    background-color: @btnControlBackground;
+
+    @media @mobileAndTablet {
+      width: 91px;
+      height: 91px;
+    }
+
+    @media @desktop {
+      width: 45px;
+      height: 45px;
+    }
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      display: block;
+      content: "";
+      transform: translateX(-50%) translateY(-50%);
+
+      @media @mobileAndTablet {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      }
+
+      @media @desktop {
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+      }
+    }
+
+    &::after {
+      .clearfix();
+    }
+
+    &:first-child {
+      float: left;
+    }
+
+    &:last-child {
+      float: right;
+    }
+
+    &--prev {
+      &::before {
+        @media @mobileAndTablet {
+          border-right: 20px solid @btnArrow;
+          left: 43px;
+        }
+
+        @media @desktop {
+          border-right: 9px solid @btnArrow;
+          left: 21px;
+        }
+      }
+    }
+
+    &--next {
+      &::before {
+        @media @mobileAndTablet {
+          border-left: 20px solid @btnArrow;
+          left: 49px;
+        }
+
+        @media @desktop {
+          border-left: 9px solid @btnArrow;
+          left: 24px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,209 @@
+.gallery {
+  // display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: @galleryBackground;
+
+  &--open {
+    display: block;
+  }
+
+  &__header {
+    background-color: @galleryHeaderBackground;
+
+    @media @tabletOnly {
+      position: relative;
+      background-color: @galleryHeaderBackgroundTablet;
+    }
+  }
+
+  &__header-ad {
+    @media @mobileOnly {
+      display: none;
+    }
+
+    @media @tablet {
+      font-size: 14px;
+      line-height: 26px;
+      width: 728px;
+      margin-right: auto;
+      margin-left: auto;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: @galleryHeaderAdBackground;
+    }
+  }
+
+  &__wrapper {
+    @media @mobileOnly {
+      height: calc(~"100% - " @galleryFooterHeightMobile);
+    }
+
+    @media @tabletOnly {
+      height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeightMobile));
+    }
+
+    @media @desktop {
+      height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeight));
+    }
+  }
+
+  &__toggle {
+    display: block;
+
+    @media @mobileOnly {
+      top: 0;
+    }
+
+    @media @tabletOnly {
+      bottom: -1*@galleryToggleSizeMobile;
+    }
+
+    @media @mobileAndTablet {
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      background-color: fade(@galleryToggle, 60%);
+      width: @galleryToggleSizeMobile;
+      height: @galleryToggleSizeMobile;
+    }
+
+    @media @desktop {
+      background-color: @galleryToggleDesktop;
+      position: absolute;
+      right: 16px;
+      top: 18px;
+      width: @galleryToggleSizeDesktop;
+      height: @galleryToggleSizeDesktop;
+    }
+
+    &::before {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 1px;
+      content: "";
+      transform: rotateZ(45deg);
+      background-color: @galleryToggleCross;
+
+      @media @mobileAndTablet {
+        top: @galleryToggleSizeMobile/2;
+        right: 36px;
+      }
+
+      @media @desktop {
+        top: @galleryToggleSizeDesktop/2;
+        right: 17px;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      display: block;
+      width: 20px;
+      height: 1px;
+      content: "";
+      transform: rotateZ(-45deg);
+      background-color: @galleryToggleCross;
+
+      @media @mobileAndTablet {
+        top: @galleryToggleSizeMobile/2;
+        right: 36px;
+      }
+
+      @media @desktop {
+        top: @galleryToggleSizeDesktop/2;
+        right: 17px;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: @galleryFooterBackground;
+    border-top: 1px solid @galleryFooterBorder;
+
+    @media @mobileOnly {
+      min-width: @minWidth;
+    }
+
+    @media @mobileAndTablet {
+      height: @galleryFooterHeightMobile;
+      padding-right: 21px;
+      padding-left: 21px;
+    }
+
+    @media @desktop {
+      height: @galleryFooterHeight;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+
+  &__logo {
+    margin-right: auto;
+
+    @media @mobileAndTablet {
+      width: 150px;
+    }
+
+    @media @desktop {
+      width: 93px;
+    }
+  }
+
+  &__logo-icon {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__container {
+    @media @mobileAndTablet {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media @desktop {
+      display: none;
+    }
+
+    &:last-child {
+      margin-left: 3%;
+    }
+  }
+
+  &__button-label {
+    text-transform: uppercase;
+  }
+
+  &__button {
+    @media @mobileAndTablet {
+      width: 62px;
+      height: 62px;
+      margin-left: 15px;
+      position: relative;
+      border-radius: 50%;
+      background-color: @veryDarkGrayLightest;
+      box-shadow: inset 2px 2px 5px fade(white, 25%);
+    }
+  }
+
+  &__icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
