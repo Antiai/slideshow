@@ -410,7 +410,7 @@ template {
 body {
   background-color: #171717;
   color: #fff;
-  font-family: "AvenirNextLTPro", "Tahoma", sans-serif;
+  font-family: "Avenir Next LT Pro Regular", "Tahoma", sans-serif;
   font-size: 14px;
   line-height: 1.6em;
 }
@@ -420,9 +420,27 @@ a {
 .hidden {
   display: none;
 }
+@font-face {
+  font-family: "Avenir Next LT Pro Regular";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/AvenirNextLTPro-Regular.woff") format("woff"), url("../fonts/AvenirNextLTPro-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Avenir Next LT Pro Bold Condensed";
+  font-weight: bold;
+  font-style: normal;
+  src: url("../fonts/AvenirNextLTPro-BoldCn.woff") format("woff"), url("../fonts/AvenirNextLTPro-BoldCn.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Avenir Black Bold";
+  font-weight: bold;
+  font-style: normal;
+  src: url("../fonts/Avenir-Black-webfont.woff") format("woff"), url("../fonts/Avenir-Black-webfont.woff2") format("woff2");
+}
 .main__wrapper {
   max-width: 960px;
-  min-width: 500px;
+  min-width: 320px;
   margin-right: auto;
   margin-left: auto;
   padding-top: 50px;
@@ -504,6 +522,7 @@ a {
   display: block;
   width: 100%;
   height: auto;
+  fill: #fff;
 }
 .gallery__container:last-child {
   margin-left: 3%;
@@ -517,6 +536,7 @@ a {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  fill: #fff;
 }
 .slideshow {
   position: relative;
@@ -532,7 +552,7 @@ a {
   background-color: rgba(43, 43, 43, 0.6);
 }
 .slideshow__container {
-  min-width: 500px;
+  min-width: 320px;
   height: 100%;
 }
 .slideshow__item {
@@ -564,7 +584,7 @@ a {
   top: 50%;
   left: 0;
   width: 100%;
-  min-width: 500px;
+  min-width: 320px;
   transform: translateY(-50%);
 }
 .slideshow__btn {
@@ -594,7 +614,7 @@ a {
   float: right;
 }
 .social {
-  min-width: 500px;
+  min-width: 320px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -610,18 +630,28 @@ a {
 }
 .social__link {
   display: block;
+  background-repeat: no-repeat;
 }
 .social__link--pinterest {
-  background-color: #cb2028;
+  background-image: linear-gradient(135deg, #cb2028, #cb2028 50%, #b61f26 50%);
 }
 .social__link--facebook {
-  background-color: #3b5999;
+  background-image: linear-gradient(135deg, #3b5999, #3b5999 50%, #36508b 50%);
 }
 .social__link--google {
-  background-color: #de4b39;
+  background-image: linear-gradient(135deg, #de4b39, #de4b39 50%, #c94433 50%);
 }
 .social__link--twitter {
   background-color: #00acee;
+  background-image: linear-gradient(135deg, #00acee, #00acee 50%, #00a2e0 50%);
+}
+.social__icon {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  fill: #fff;
 }
 @media screen and (min-width: 768px) {
   .main__wrapper {
@@ -651,6 +681,9 @@ a {
   }
   .gallery__toggle {
     bottom: -92px;
+  }
+  .gallery__logo {
+    width: 150px;
   }
   .slideshow__counter {
     margin-top: 23px;
@@ -726,7 +759,10 @@ a {
     top: 0;
   }
   .gallery__footer {
-    min-width: 500px;
+    min-width: 320px;
+  }
+  .gallery__logo {
+    width: 75px;
   }
   .slideshow__item {
     padding-left: 33px;
@@ -754,9 +790,6 @@ a {
     height: 86px;
     padding-right: 21px;
     padding-left: 21px;
-  }
-  .gallery__logo {
-    width: 150px;
   }
   .gallery__container {
     display: flex;
