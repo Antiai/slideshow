@@ -28,6 +28,7 @@
 
   &__link {
     display: block;
+    background-repeat: no-repeat;
 
     @media @mobileAndTablet {
       width: 73px;
@@ -35,19 +36,29 @@
     }
 
     &--pinterest {
-      background-color: @socialPinterestLightBackground;
+      background-image: linear-gradient(135deg, @socialPinterestLightBackground, @socialPinterestLightBackground 50%, @socialPinterestDarkBackground 50%);
     }
 
     &--facebook {
-      background-color: @socialFacebookLightBackground;
+      background-image: linear-gradient(135deg, @socialFacebookLightBackground, @socialFacebookLightBackground 50%, @socialFacebookDarkBackground 50%);
     }
 
     &--google {
-      background-color: @socialGoogleLightBackground;
+      background-image: linear-gradient(135deg, @socialGoogleLightBackground, @socialGoogleLightBackground 50%, @socialGoogleDarkBackground 50%);
     }
 
     &--twitter {
       background-color: @socialTwitterLightBackground;
+      background-image: linear-gradient(135deg, @socialTwitterLightBackground, @socialTwitterLightBackground 50%, @socialTwitterDarkBackground 50%);
     }
+  }
+
+  &__icon {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    fill: @socialIconFill;
   }
 }

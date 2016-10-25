@@ -151,7 +151,11 @@
   &__logo {
     margin-right: auto;
 
-    @media @mobileAndTablet {
+    @media @mobileOnly {
+      width: 75px;
+    }
+
+    @media @tabletOnly {
       width: 150px;
     }
 
@@ -164,6 +168,7 @@
     display: block;
     width: 100%;
     height: auto;
+    fill: @galleryLogoFill;
   }
 
   &__container {
@@ -205,5 +210,6 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+    fill: @btnIconFill;
   }
 }
