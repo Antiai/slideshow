@@ -13,3 +13,13 @@
   display: table;
   clear: both;
 }
+
+.desktop-active() {
+  display: none;
+
+  &--active {
+    @media @desktop {
+      display: block;
+    }
+  }
+}

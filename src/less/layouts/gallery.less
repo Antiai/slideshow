@@ -1,5 +1,5 @@
 .gallery {
-  // display: none;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -40,44 +40,52 @@
   }
 
   &__wrapper {
+    position: relative;
+
     @media @mobileOnly {
       height: calc(~"100% - " @galleryFooterHeightMobile);
     }
 
     @media @tabletOnly {
-      height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeightMobile));
+      height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeightTablet));
+    }
+
+    @media @mobileAndTablet {
+      z-index: -1;
     }
 
     @media @desktop {
-      height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeight));
+      height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeightDesktop));
+      display: flex;
     }
   }
 
   &__toggle {
     display: block;
+    position: absolute;
 
     @media @mobileOnly {
       top: 0;
-    }
-
-    @media @tabletOnly {
-      bottom: -1*@galleryToggleSizeMobile;
-    }
-
-    @media @mobileAndTablet {
-      position: absolute;
-      z-index: 2;
-      right: 0;
-      background-color: fade(@galleryToggle, 60%);
       width: @galleryToggleSizeMobile;
       height: @galleryToggleSizeMobile;
     }
 
+    @media @tabletOnly {
+      bottom: -1*@galleryToggleSizeTablet;
+      width: @galleryToggleSizeTablet;
+      height: @galleryToggleSizeTablet;
+    }
+
+    @media @mobileAndTablet {
+      z-index: 2;
+      right: 0;
+      background-color: fade(@galleryToggleBackground, 60%);
+    }
+
     @media @desktop {
-      background-color: @galleryToggleDesktop;
-      position: absolute;
+      background-color: @galleryToggleBackgroundDesktop;
       right: 16px;
-      top: 18px;
+      top: 16px;
       width: @galleryToggleSizeDesktop;
       height: @galleryToggleSizeDesktop;
     }
@@ -85,40 +93,55 @@
     &::before {
       position: absolute;
       display: block;
-      width: 20px;
       height: 1px;
       content: "";
       transform: rotateZ(45deg);
       background-color: @galleryToggleCross;
 
-      @media @mobileAndTablet {
+      @media @mobileOnly {
         top: @galleryToggleSizeMobile/2;
-        right: 36px;
+        right: 15px;
+        width: 14px;
+      }
+
+      @media @tabletOnly {
+        top: @galleryToggleSizeTablet/2;
+        right: 28px;
+        width: 29px;
       }
 
       @media @desktop {
         top: @galleryToggleSizeDesktop/2;
-        right: 17px;
+        right: 12px;
+        width: 29px;
       }
     }
 
     &::after {
       position: absolute;
       display: block;
-      width: 20px;
+
       height: 1px;
       content: "";
       transform: rotateZ(-45deg);
       background-color: @galleryToggleCross;
 
-      @media @mobileAndTablet {
+      @media @mobileOnly {
         top: @galleryToggleSizeMobile/2;
-        right: 36px;
+        right: 15px;
+        width: 14px;
+      }
+
+      @media @tabletOnly {
+        top: @galleryToggleSizeTablet/2;
+        right: 28px;
+        width: 29px;
       }
 
       @media @desktop {
         top: @galleryToggleSizeDesktop/2;
-        right: 17px;
+        right: 12px;
+        width: 29px;
       }
     }
   }
@@ -129,22 +152,27 @@
     justify-content: center;
     align-items: center;
     background-color: @galleryFooterBackground;
-    border-top: 1px solid @galleryFooterBorder;
+    border-top: 1px solid @galleryFooterBorderColor;
 
     @media @mobileOnly {
       min-width: @minWidth;
+      height: @galleryFooterHeightMobile;
+      padding-right: 13px;
+      padding-left: 13px;
+      box-shadow: 0 -5px 20px 5px black;
     }
 
-    @media @mobileAndTablet {
-      height: @galleryFooterHeightMobile;
+    @media @tabletOnly {
+      height: @galleryFooterHeightTablet;
       padding-right: 21px;
       padding-left: 21px;
+      box-shadow: 0 -10px 40px 10px black;
     }
 
     @media @desktop {
-      height: @galleryFooterHeight;
-      padding-right: 15px;
-      padding-left: 15px;
+      height: @galleryFooterHeightDesktop;
+      padding-right: 23px;
+      padding-left: 23px;
     }
   }
 
@@ -184,23 +212,72 @@
     }
 
     &:last-child {
-      margin-left: 3%;
+      @media @mobileOnly {
+        margin-left: 21px;
+      }
+
+      @media @tabletOnly {
+        margin-left: 40px;
+      }
     }
   }
 
-  &__button-label {
-    text-transform: uppercase;
+  &__button {
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  &__button {
-    @media @mobileAndTablet {
+  &__button-label {
+    display: block;
+    text-transform: uppercase;
+
+    @media @mobileOnly {
+      font-size: 10px;
+    }
+
+    @media @tabletOnly {
+      font-size: 20px;
+    }
+  }
+
+  &__icon-wrapper {
+    display: block;
+
+    @media @mobileOnly {
+      width: 31px;
+      height: 31px;
+      margin-left: 8px;
+      box-shadow: inset 2px 2px 2px 1px fade(@galleryFooterBtnShadowColor, 10%);
+    }
+
+    @media @tabletOnly {
       width: 62px;
       height: 62px;
       margin-left: 15px;
+      box-shadow: inset 2px 2px 3px 1px fade(@galleryFooterBtnShadowColor, 10%);
+    }
+
+    @media @mobileAndTablet {
       position: relative;
       border-radius: 50%;
-      background-color: @veryDarkGrayLightest;
-      box-shadow: inset 2px 2px 5px fade(white, 25%);
+      background-color: @galleryFooterBtnBackground;
+    }
+
+    &--active {
+
+      @media @mobileOnly {
+        box-shadow: inset 0 2px 3px 1px fade(@galleryFooterBtnShadowActiveColor, 40%);
+      }
+
+      @media @tabletOnly {
+        box-shadow: inset 0 3px 3px 1px fade(@galleryFooterBtnShadowActiveColor, 40%);
+      }
+
+      @media @mobileAndTablet {
+        background-color: @galleryFooterBtnBackgroundActive;
+      }
     }
   }
 
@@ -211,5 +288,18 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     fill: @btnIconFill;
+    height: auto;
+
+    &--share {
+      @media @mobileOnly {
+        width: 9px;
+      }
+    }
+
+    &--thumb {
+      @media @mobileOnly {
+        width: 12px;
+      }
+    }
   }
 }

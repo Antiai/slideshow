@@ -1,28 +1,55 @@
 .social {
-  min-width: @minWidth;
+  align-items: center;
   margin: 0;
   padding: 0;
   list-style: none;
-  display: none;
+
+  @media @mobileOnly {
+    height: @socialHeightMobile;
+    min-width: @minWidth;
+  }
+
+  @media @tabletOnly {
+    height: @socialHeightTablet;
+  }
+
+  @media @mobileAndTablet {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    background-color: fade(@socialBackground, 60%);
+  }
+
+  @media @desktop {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    width: 37px;
+    background-color: @socialBackgroundDesktop;
+  }
 
   &--open {
-    position: absolute;
     display: flex;
-    background-color: fade(@socialBackground, 60%);
-
-    @media @mobileAndTablet {
-      bottom: @galleryFooterHeightMobile;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: @socialHeightMobile;
-    }
   }
 
   &__item {
     &:not(:last-child) {
-      margin-right: 50px;
+      @media @mobileOnly {
+        margin-right: 25px;
+      }
+
+      @media @tabletOnly {
+        margin-right: 50px;
+      }
+    }
+
+    &--google {
+      @media @desktop {
+        order: 1;
+      }
     }
   }
 
@@ -30,35 +57,114 @@
     display: block;
     background-repeat: no-repeat;
 
-    @media @mobileAndTablet {
+    @media @mobileOnly {
+      width: 36px;
+      height: 36px;
+    }
+
+    @media @tabletOnly {
       width: 73px;
       height: 73px;
     }
 
+    @media @desktop {
+      width: 37px;
+      height: 106px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      padding-bottom: 7px;
+    }
+
     &--pinterest {
-      background-image: linear-gradient(135deg, @socialPinterestLightBackground, @socialPinterestLightBackground 50%, @socialPinterestDarkBackground 50%);
+      @media @mobileAndTablet {
+        background-image: linear-gradient(135deg, @socialPinterestLightBackground, @socialPinterestLightBackground 50%, @socialPinterestDarkBackground 50%);
+      }
+
+      @media @desktop {
+        background-image: linear-gradient(251.3deg, @socialPinterestLightBackground, @socialPinterestLightBackground 50%, @socialPinterestDarkBackground 50%);
+      }
     }
 
     &--facebook {
-      background-image: linear-gradient(135deg, @socialFacebookLightBackground, @socialFacebookLightBackground 50%, @socialFacebookDarkBackground 50%);
+      @media @mobileAndTablet {
+        background-image: linear-gradient(135deg, @socialFacebookLightBackground, @socialFacebookLightBackground 50%, @socialFacebookDarkBackground 50%);
+      }
+
+      @media @desktop {
+        background-image: linear-gradient(251.3deg, @socialFacebookLightBackground, @socialFacebookLightBackground 50%, @socialFacebookDarkBackground 50%);
+      }
     }
 
     &--google {
-      background-image: linear-gradient(135deg, @socialGoogleLightBackground, @socialGoogleLightBackground 50%, @socialGoogleDarkBackground 50%);
+      @media @mobileAndTablet {
+        background-image: linear-gradient(135deg, @socialGoogleLightBackground, @socialGoogleLightBackground 50%, @socialGoogleDarkBackground 50%);
+      }
+
+      @media @desktop {
+        background-image: linear-gradient(251.3deg, @socialGoogleLightBackground, @socialGoogleLightBackground 50%, @socialGoogleDarkBackground 50%);
+      }
     }
 
     &--twitter {
-      background-color: @socialTwitterLightBackground;
-      background-image: linear-gradient(135deg, @socialTwitterLightBackground, @socialTwitterLightBackground 50%, @socialTwitterDarkBackground 50%);
+      @media @mobileAndTablet {
+        background-image: linear-gradient(135deg, @socialTwitterLightBackground, @socialTwitterLightBackground 50%, @socialTwitterDarkBackground 50%);
+      }
+
+      @media @desktop {
+        background-image: linear-gradient(251.3deg, @socialTwitterLightBackground, @socialTwitterLightBackground 50%, @socialTwitterDarkBackground 50%);
+      }
     }
   }
 
   &__icon {
-    display: block;
     position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    display: block;
     fill: @socialIconFill;
+
+    @media @mobileOnly {
+      height: auto;
+    }
+
+    @media @mobileAndTablet {
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    &--pinterest {
+      @media @mobileOnly {
+        width: 9px;
+      }
+    }
+
+    &--facebook {
+      @media @mobileOnly {
+        width: 5px;
+      }
+    }
+
+    &--google {
+      @media @mobileOnly {
+        width: 10px;
+      }
+    }
+
+    &--twitter {
+      @media @mobileOnly {
+        width: 11px;
+      }
+    }
+  }
+
+  &__action {
+    font-family: "Avenir Next LT Pro Bold Condensed", "Tahoma", sans-serif;
+    color: @txtColor;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 18px;
   }
 }

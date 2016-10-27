@@ -1,52 +1,98 @@
 .slideshow {
-  position: relative;
   height: 100%;
+
+  @media @mobileAndTablet {
+    overflow: auto;
+  }
+
+  @media @desktop {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
 
   &__counter {
     line-height: 26px;
     position: absolute;
     z-index: 2;
-    width: 101px;
-    margin-left: 10px;
     text-align: center;
-    background-color: fade(@counterBackground, 60%);
 
-    @media @tabletOnly {
-      margin-top: 23px;
+    @media @mobileOnly {
+      font-size: 12px;
+      width: 50px;
+      margin-left: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
     }
 
-    @media @mobileAndTablet {
-      font-size: 15px;
+    @media @tabletOnly {
+      font-size: 20px;
+      width: 101px;
+      margin-top: 25px;
+      margin-left: 3px;
       padding-top: 10px;
       padding-bottom: 10px;
     }
 
+    @media @mobileAndTablet {
+      background-color: fade(@counterBackground, 60%);
+    }
+
     @media @desktop {
       font-size: 12px;
+      top: 30px;
+      right: -335px;
     }
   }
 
   &__container {
     min-width: @minWidth;
-    height: 100%;
+
+    @media @mobileOnly {
+      height: calc(~"100% - " 38px);
+    }
+
+    @media @tabletOnly {
+      height: calc(~"100% - " 75px);
+    }
+
+    @media @desktop {
+      position: relative;
+      width: calc(~"100% - 372px");
+      height: 100%;
+    }
   }
 
   &__item {
+    font-size: 0;
+    display: none;
     height: 100%;
     margin-right: auto;
     margin-left: auto;
-    font-size: 0;
     text-align: center;
 
     @media @mobileOnly {
-      padding-left: 33px;
       padding-right: 33px;
+      padding-left: 33px;
+    }
+
+    @media @desktop {
+      padding-top: 24px;
+      padding-bottom: 24px;
+      position: relative;
+    }
+
+    &--active {
+      display: block;
     }
 
     &::before {
-      content: "";
       display: inline-block;
       height: 100%;
+      content: "";
       vertical-align: middle;
     }
   }
@@ -54,50 +100,71 @@
   &__photo {
     position: relative;
     display: block;
+    display: inline-block;
     width: auto;
     max-width: 100%;
     height: auto;
     max-height: 100%;
     margin: 0 auto;
-    display: inline-block;
     vertical-align: middle;
   }
 
   &__btn-set {
     position: absolute;
-    top: 50%;
     left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     min-width: @minWidth;
     transform: translateY(-50%);
 
-    @media @mobileAndTablet {
-      padding-right: 21px;
-      padding-left: 21px;
+    @media @mobileOnly {
+      top: 48.4%;
+      padding-right: 9px;
+      padding-left: 9px;
+    }
+
+    @media @tabletOnly {
+      top: 46.7%;
+      padding-right: 19px;
+      padding-left: 19px;
     }
 
     @media @desktop {
+      top: 48.4%;
       padding-right: 25px;
       padding-left: 25px;
+    }
+
+    &--hide {
+      @media @mobileOnly {
+        opacity: 0;
+      }
     }
   }
 
   &__btn {
-    padding: 0;
     position: relative;
     display: block;
+    padding: 0;
     border: none;
     border-radius: 50%;
     background-color: @btnControlBackground;
 
-    @media @mobileAndTablet {
-      width: 91px;
-      height: 91px;
+    @media @mobileOnly {
+      width: 45px;
+      height: 45px;
+    }
+
+    @media @tabletOnly {
+      width: 90px;
+      height: 90px;
     }
 
     @media @desktop {
-      width: 45px;
-      height: 45px;
+      width: 56px;
+      height: 56px;
     }
 
     &::before {
@@ -107,7 +174,12 @@
       content: "";
       transform: translateX(-50%) translateY(-50%);
 
-      @media @mobileAndTablet {
+      @media @mobileOnly {
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+      }
+
+      @media @tabletOnly {
         border-top: 8px solid transparent;
         border-bottom: 8px solid transparent;
       }
@@ -118,44 +190,218 @@
       }
     }
 
-    &::after {
-      .clearfix();
-    }
-
-    &:first-child {
-      float: left;
-    }
-
-    &:last-child {
-      float: right;
-    }
-
     &--prev {
       &::before {
-        @media @mobileAndTablet {
-          border-right: 20px solid @btnArrow;
+        @media @mobileOnly {
+          left: 21px;
+          border-right: 9px solid @btnArrow;
+        }
+
+        @media @tabletOnly {
           left: 43px;
+          border-right: 20px solid @btnArrow;
         }
 
         @media @desktop {
+          left: 26px;
           border-right: 9px solid @btnArrow;
-          left: 21px;
         }
       }
     }
 
     &--next {
       &::before {
-        @media @mobileAndTablet {
-          border-left: 20px solid @btnArrow;
+        @media @mobileOnly {
+          left: 24px;
+          border-left: 9px solid @btnArrow;
+        }
+
+        @media @tabletOnly {
           left: 49px;
+          border-left: 20px solid @btnArrow;
         }
 
         @media @desktop {
+          left: 26px;
           border-left: 9px solid @btnArrow;
-          left: 24px;
         }
       }
     }
+  }
+
+  &__content {
+    @media @mobileOnly {
+      padding-top: 15px;
+      padding-bottom: 30px;
+    }
+
+    @media @tabletOnly {
+      padding-top: 13px;
+      padding-bottom: 26px;
+    }
+
+    @media @desktop {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 1;
+      justify-content: space-between;
+      width: 372px;
+      height: 100%;
+      padding-top: 28px;
+      background-color: @contentBackground;
+    }
+  }
+
+  &__content-wrapper {
+    @media @desktop {
+      overflow: auto;
+      padding-right: 33px;
+      padding-bottom: 30px;
+      padding-left: 33px;
+    }
+  }
+
+  &__toggle {
+    @media @mobileAndTablet {
+      display: none;
+    }
+
+    @media @desktop {
+      font-size: 12px;
+      line-height: 26px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: inherit;
+    }
+  }
+
+  &__toggle-wrapper {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-right: 9px;
+    margin-left: -2px;
+    border-radius: 50%;
+    background-color: @toggleIconBackground;
+  }
+
+  &__toggle-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  &__toggle-label {
+    display: block;
+  }
+
+  &__title {
+    .desktop-active();
+
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 17px;
+    margin-bottom: 19px;
+  }
+
+  &__description {
+    .desktop-active();
+
+    margin-bottom: 20px;
+  }
+
+  &__author {
+    line-height: 22px;
+    display: none;
+    margin: 0;
+
+    @media @mobileOnly {
+      font-size: 11px;
+      max-width: @minWidth*2;
+      padding-right: 21px;
+      padding-left: 21px;
+    }
+
+    @media @tabletOnly {
+      font-size: 18px;
+      max-width: 960px;
+      padding-right: 125px;
+      padding-left: 125px;
+    }
+
+    @media @mobileAndTablet {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    @media @desktop {
+      font-size: 11px;
+      line-height: 22px;
+    }
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__ad-container {
+    @media @mobileAndTablet {
+      display: none;
+    }
+
+    @media @desktop {
+      font-family: "Avenir Next LT Pro Bold Condensed", "Tahoma", sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 26px;
+      height: 321px;
+      min-height: 321px;
+      padding: 34px;
+      text-transform: uppercase;
+      color: @adTxtColor;
+      border-top: 1px solid @slideshowAdBorderLight;
+      box-shadow: 0 -1px @slideshowAdBorderDark;
+    }
+  }
+
+  &__ad {
+    height: 100%;
+    text-align: center;
+    background-color: #fff;
+  }
+
+  &__ad-text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__share {
+    @media @mobileAndTablet {
+      display: none;
+    }
+
+    @media @desktop {
+      position: absolute;
+      width: 73px;
+      height: 73px;
+      background-image: linear-gradient(135deg, @socialPinterestLightBackground, @socialPinterestLightBackground 50%, @socialPinterestDarkBackground 50%);
+      background-repeat: no-repeat;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  &__share-icon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    display: block;
+    fill: @socialIconFill;
+    transform: translateX(-50%) translateY(-50%);
   }
 }
