@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Slideshow</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="img/favicon/manifest.json">
+  <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg">
+  <meta name="apple-mobile-web-app-title" content="Slideshow">
+  <meta name="application-name" content="Slideshow">
+  <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="css/style.css">
   <script>
     // Picture element HTML5 shiv
@@ -14,8 +22,23 @@
 </head>
 <body>
   <svg style="display:none">
+    <symbol id="share" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+      <path d="M18 9v9H0V0h9v2H2v14h14V9h2zm-7-9v1h5.293L8.646 8.646l.708.708L17 1.707V7h1V0h-7z"/>
+    </symbol>
     <symbol id="thumb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
       <path d="M6 6H0V0h6v6zm8-6H8v6h6V0zm8 0h-6v6h6V0zM6 8H0v6h6V8zm8 0H8v6h6V8zm8 0h-6v6h6V8zM6 16H0v6h6v-6zm8 0H8v6h6v-6zm8 0h-6v6h6v-6z"/>
+    </symbol>
+    <symbol id="pinterest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 21">
+      <path d="M9.54 0C3.2 0 0 4.11 0 7.54c0 2.07.87 3.92 2.73 4.61.31.11.58 0 .67-.3.06-.21.21-.75.27-.97.09-.3.05-.41-.19-.67-.53-.58-.88-1.32-.88-2.37 0-3.05 2.53-5.78 6.58-5.78 3.59 0 5.56 1.98 5.56 4.62 0 3.48-1.7 6.41-4.23 6.41-1.4 0-2.44-1.04-2.11-2.32.4-1.53 1.18-3.18 1.18-4.28 0-.99-.59-1.81-1.8-1.81-1.44 0-2.58 1.33-2.58 3.12 0 1.14.43 1.91.43 1.91S4.16 15.3 3.9 16.28c-.51 1.95-.08 4.34-.04 4.58.02.14.23.18.32.07.13-.16 1.83-2.05 2.41-3.95.16-.54.94-3.32.94-3.32.46.8 1.82 1.5 3.26 1.5 4.29 0 7.21-3.54 7.21-8.27C18 3.33 14.64 0 9.54 0z"/>
+    </symbol>
+    <symbol id="facebook" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 20">
+      <path d="M2.55 20v-9.38H0V7.24h2.55V4.35C2.55 2.08 4.06 0 7.54 0c1.41 0 2.45.13 2.45.13L9.9 3.29s-1.06-.01-2.22-.01c-1.25 0-1.45.56-1.45 1.49v2.47H10l-.16 3.38H6.23V20H2.55z"/>
+    </symbol>
+    <symbol id="google" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 16.18">
+      <path d="M8.45 9.28l-.8-.59c-.3-.2-.61-.39-.61-.89 0-.39.3-.69.61-.98.91-.69 1.81-1.38 1.81-2.96S8.45 1 7.95 1h1.21l1.41-1H6.14C5.03 0 3.52.36 2.31 1.34 1.41 2.03.9 3.44.9 4.43.9 6.1 2.21 8 4.73 8h.71c-.1 0-.2.15-.2.54 0 .59.3.86.6 1.25-1.01.1-2.82.14-4.13.92C.4 11.5 0 12.46 0 13.25c0 1.47 1.51 2.93 4.63 2.93 3.62 0 5.64-1.98 5.64-3.94 0-1.48-.91-2.18-1.82-2.96zM5.53 7.02c-1.91 0-2.72-2.36-2.72-3.74 0-.49.1-1.08.51-1.58.3-.39.9-.69 1.51-.69 1.81 0 2.72 2.36 2.72 3.93 0 .3 0 .98-.51 1.47-.4.31-1 .61-1.51.61zm0 8.35c-2.31 0-3.82-1.08-3.82-2.55 0-1.48 1.31-1.97 1.81-2.16.9-.29 2.11-.29 2.31-.29h.61c1.61 1.09 2.31 1.67 2.31 2.76.01 1.26-1.1 2.24-3.22 2.24zM19 7.3h-3.01V4.29H14V7.3h-3v1.99h3v3h1.99v-3H19z"/>
+    </symbol>
+    <symbol id="twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 19">
+      <path d="M23 2.25c-.85.38-1.76.64-2.71.75.97-.59 1.72-1.53 2.07-2.65-.91.55-1.92.95-3 1.16A4.65 4.65 0 0 0 15.92 0c-2.61 0-4.72 2.15-4.72 4.8 0 .38.04.74.12 1.09-3.92-.2-7.4-2.11-9.73-5.01-.39.71-.63 1.53-.63 2.41 0 1.66.83 3.13 2.1 3.99a4.61 4.61 0 0 1-2.14-.6v.06c0 2.32 1.63 4.26 3.79 4.7-.4.11-.81.17-1.24.17-.3 0-.6-.03-.89-.09.6 1.91 2.34 3.29 4.41 3.33a9.337 9.337 0 0 1-5.86 2.05c-.38 0-.76-.02-1.13-.07C2.09 18.21 4.57 19 7.23 19c8.68 0 13.43-7.31 13.43-13.65 0-.21 0-.41-.01-.62.92-.67 1.72-1.52 2.35-2.48z"/>
     </symbol>
   </svg>
   <main class="main">
@@ -34,12 +57,19 @@
       <section class="slideshow">
         <div class="slideshow__container">
           <div class="slideshow__counter"><span class="slideshow__number">1</span>/<span class="slideshow__quantity">10</span></div>
-          <div class="slideshow__item  slideshow__item--active">
-            <img class="slideshow__photo  slideshow__photo--active" src="img/gallery/photo-1-desktop@1x.jpg" srcset="img/gallery/photo-1-desktop@2x.jpg 2x" width="513" height="766" alt="Slide-1">
-            <div class="slideshow__share">
-              <svg class="slideshow__share-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 21" width="18" height="21">
-                <path d="M9.54 0C3.2 0 0 4.11 0 7.54c0 2.07.87 3.92 2.73 4.61.31.11.58 0 .67-.3.06-.21.21-.75.27-.97.09-.3.05-.41-.19-.67-.53-.58-.88-1.32-.88-2.37 0-3.05 2.53-5.78 6.58-5.78 3.59 0 5.56 1.98 5.56 4.62 0 3.48-1.7 6.41-4.23 6.41-1.4 0-2.44-1.04-2.11-2.32.4-1.53 1.18-3.18 1.18-4.28 0-.99-.59-1.81-1.8-1.81-1.44 0-2.58 1.33-2.58 3.12 0 1.14.43 1.91.43 1.91S4.16 15.3 3.9 16.28c-.51 1.95-.08 4.34-.04 4.58.02.14.23.18.32.07.13-.16 1.83-2.05 2.41-3.95.16-.54.94-3.32.94-3.32.46.8 1.82 1.5 3.26 1.5 4.29 0 7.21-3.54 7.21-8.27C18 3.33 14.64 0 9.54 0z"/>
-              </svg>
+          <div class="slideshow__item">
+            <div class="slideshow__item-wrapper">
+              <!-- Use class "slideshow__picture--active" to show another image -->
+              <picture class="slideshow__picture  slideshow__picture--active">
+                <source media="(min-width: 1150px)" srcset="img/gallery/photo-1-desktop@2x.jpg 2x, img/gallery/photo-1-desktop@1x.jpg 1x">
+                <source media="(min-width: 768px)" srcset="img/gallery/photo-1-tablet@2x.jpg 2x, img/gallery/photo-1-tablet@1x.jpg 1x">
+                <img class="slideshow__photo" src="img/gallery/photo-1-mobile@1x.jpg" srcset="img/gallery/photo-1-mobile@2x.jpg 2x" width="255" height="283" alt="Slide-1">
+              </picture>
+              <a href="#" class="slideshow__share">
+                <svg class="slideshow__share-icon" width="18" height="22">
+                  <use xlink:href="#pinterest"/>
+                </svg>
+              </a>
             </div>
           </div>
           <div class="slideshow__btn-set">
@@ -48,7 +78,7 @@
           </div>
         </div>
         <section class="slideshow__content">
-          <div class="slideshow__content-wrapper">
+          <div class="slideshow__toggle-container">
             <a href="#" class="slideshow__toggle">
               <span class="slideshow__toggle-wrapper">
                 <svg class="slideshow__toggle-icon" height="14" width="14">
@@ -57,16 +87,19 @@
               </span>
               <span class="slideshow__toggle-label">Thumbnails</span>
             </a>
-            <h2 class="slideshow__title  slideshow__title--active">
+          </div>
+          <!-- Use class "slideshow__text--active" to show another text block -->
+          <section class="slideshow__text  slideshow__text--active">
+            <h2 class="slideshow__title">
               Fake It Until You Make It: Eyes That Pop And Lips That Attracts
             </h2>
-            <p class="slideshow__description  slideshow__description--active">
+            <p class="slideshow__description">
               Through all of our handy beauty products, we enhance and improve upon our features that we were born with, and play up the ones that we wish had a bit more prominence. So that saying “fake it until you make it” can really ring true in the beauty world
             </p>
-            <p class="slideshow__author  slideshow__author--active">
+            <p class="slideshow__author">
               Photo: / Pascal Le Segretain/Getty Images
             </p>
-          </div>
+          </section>
           <div class="slideshow__ad-container">
             <div class="slideshow__ad  slideshow__ad--active">
               <div class="slideshow__ad-text">Ad</div>
@@ -77,32 +110,32 @@
       <ul class="social">
         <li class="social__item  social__item--pinterest">
           <a href="#" class="social__link  social__link--pinterest">
-            <svg class="social__icon  social__icon--pinterest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 21" width="18" height="21">
-              <path d="M9.54 0C3.2 0 0 4.11 0 7.54c0 2.07.87 3.92 2.73 4.61.31.11.58 0 .67-.3.06-.21.21-.75.27-.97.09-.3.05-.41-.19-.67-.53-.58-.88-1.32-.88-2.37 0-3.05 2.53-5.78 6.58-5.78 3.59 0 5.56 1.98 5.56 4.62 0 3.48-1.7 6.41-4.23 6.41-1.4 0-2.44-1.04-2.11-2.32.4-1.53 1.18-3.18 1.18-4.28 0-.99-.59-1.81-1.8-1.81-1.44 0-2.58 1.33-2.58 3.12 0 1.14.43 1.91.43 1.91S4.16 15.3 3.9 16.28c-.51 1.95-.08 4.34-.04 4.58.02.14.23.18.32.07.13-.16 1.83-2.05 2.41-3.95.16-.54.94-3.32.94-3.32.46.8 1.82 1.5 3.26 1.5 4.29 0 7.21-3.54 7.21-8.27C18 3.33 14.64 0 9.54 0z"/>
+            <svg class="social__icon  social__icon--pinterest" width="18" height="21">
+              <use xlink:href="#pinterest"/>
             </svg>
             <span class="social__action">Pin</span>
           </a>
         </li>
         <li class="social__item  social__item--facebook">
           <a href="#" class="social__link  social__link--facebook">
-            <svg class="social__icon  social__icon--facebook" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 20" width="10" height="20">
-              <path d="M2.55 20v-9.38H0V7.24h2.55V4.35C2.55 2.08 4.06 0 7.54 0c1.41 0 2.45.13 2.45.13L9.9 3.29s-1.06-.01-2.22-.01c-1.25 0-1.45.56-1.45 1.49v2.47H10l-.16 3.38H6.23V20H2.55z"/>
+            <svg class="social__icon  social__icon--facebook" width="10" height="20">
+              <use xlink:href="#facebook"/>
             </svg>
             <span class="social__action">Like</span>
           </a>
         </li>
         <li class="social__item  social__item--google">
           <a href="#" class="social__link  social__link--google">
-            <svg class="social__icon  social__icon--google" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 16.18" width="19" height="16.18">
-              <path d="M8.45 9.28l-.8-.59c-.3-.2-.61-.39-.61-.89 0-.39.3-.69.61-.98.91-.69 1.81-1.38 1.81-2.96S8.45 1 7.95 1h1.21l1.41-1H6.14C5.03 0 3.52.36 2.31 1.34 1.41 2.03.9 3.44.9 4.43.9 6.1 2.21 8 4.73 8h.71c-.1 0-.2.15-.2.54 0 .59.3.86.6 1.25-1.01.1-2.82.14-4.13.92C.4 11.5 0 12.46 0 13.25c0 1.47 1.51 2.93 4.63 2.93 3.62 0 5.64-1.98 5.64-3.94 0-1.48-.91-2.18-1.82-2.96zM5.53 7.02c-1.91 0-2.72-2.36-2.72-3.74 0-.49.1-1.08.51-1.58.3-.39.9-.69 1.51-.69 1.81 0 2.72 2.36 2.72 3.93 0 .3 0 .98-.51 1.47-.4.31-1 .61-1.51.61zm0 8.35c-2.31 0-3.82-1.08-3.82-2.55 0-1.48 1.31-1.97 1.81-2.16.9-.29 2.11-.29 2.31-.29h.61c1.61 1.09 2.31 1.67 2.31 2.76.01 1.26-1.1 2.24-3.22 2.24zM19 7.3h-3.01V4.29H14V7.3h-3v1.99h3v3h1.99v-3H19z"/>
+            <svg class="social__icon  social__icon--google" width="19" height="16">
+              <use xlink:href="#google"/>
             </svg>
             <span class="social__action">+1</span>
           </a>
         </li>
         <li class="social__item  social__item--twitter">
           <a href="#" class="social__link  social__link--twitter">
-            <svg class="social__icon  social__icon--twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 19" width="23" height="19">
-              <path d="M23 2.25c-.85.38-1.76.64-2.71.75.97-.59 1.72-1.53 2.07-2.65-.91.55-1.92.95-3 1.16A4.65 4.65 0 0 0 15.92 0c-2.61 0-4.72 2.15-4.72 4.8 0 .38.04.74.12 1.09-3.92-.2-7.4-2.11-9.73-5.01-.39.71-.63 1.53-.63 2.41 0 1.66.83 3.13 2.1 3.99a4.61 4.61 0 0 1-2.14-.6v.06c0 2.32 1.63 4.26 3.79 4.7-.4.11-.81.17-1.24.17-.3 0-.6-.03-.89-.09.6 1.91 2.34 3.29 4.41 3.33a9.337 9.337 0 0 1-5.86 2.05c-.38 0-.76-.02-1.13-.07C2.09 18.21 4.57 19 7.23 19c8.68 0 13.43-7.31 13.43-13.65 0-.21 0-.41-.01-.62.92-.67 1.72-1.52 2.35-2.48z"/>
+            <svg class="social__icon  social__icon--twitter" width="23" height="19">
+              <use xlink:href="#twitter"/>
             </svg>
             <span class="social__action">Tweet</span>
           </a>
@@ -120,8 +153,8 @@
         <a href="#" class="gallery__button  gallery__button--share">
           <span class="gallery__button-label">Share</span>
           <span class="gallery__icon-wrapper">
-            <svg class="gallery__icon  gallery__icon--share" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="18" height="18">
-              <path d="M18 9v9H0V0h9v2H2v14h14V9h2zm-7-9v1h5.293L8.646 8.646l.708.708L17 1.707V7h1V0h-7z"/>
+            <svg class="gallery__icon  gallery__icon--share" width="18" height="18">
+              <use xlink:href="#share"/>
             </svg>
           </span>
         </a>
@@ -130,8 +163,8 @@
         <a href="#" class="gallery__button  gallery__button--thumb">
           <span class="gallery__button-label">Thumb</span>
           <span class="gallery__icon-wrapper">
-            <svg class="gallery__icon  gallery__icon--thumb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" width="22" height="22">
-              <path d="M6 6H0V0h6v6zm8-6H8v6h6V0zm8 0h-6v6h6V0zM6 8H0v6h6V8zm8 0H8v6h6V8zm8 0h-6v6h6V8zM6 16H0v6h6v-6zm8 0H8v6h6v-6zm8 0h-6v6h6v-6z"/>
+            <svg class="gallery__icon  gallery__icon--thumb" width="22" height="22">
+              <use xlink:href="#thumb"/>
             </svg>
           </span>
         </a>

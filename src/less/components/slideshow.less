@@ -37,7 +37,7 @@
       padding-bottom: 10px;
     }
 
-    @media @mobileAndTablet {
+    @media @mobileOnly {
       background-color: fade(@counterBackground, 60%);
     }
 
@@ -63,12 +63,13 @@
       position: relative;
       width: calc(~"100% - 372px");
       height: 100%;
+      box-shadow: inset 0 1px @slideshowBorder;
     }
   }
 
   &__item {
     font-size: 0;
-    display: none;
+    display: block;
     height: 100%;
     margin-right: auto;
     margin-left: auto;
@@ -80,14 +81,24 @@
     }
 
     @media @desktop {
+      position: relative;
       padding-top: 24px;
       padding-bottom: 24px;
-      position: relative;
     }
+  }
 
-    &--active {
-      display: block;
-    }
+  &__item-wrapper {
+    display: inline-block;
+    height: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+  }
+
+  &__picture {
+    display: none;
+    height: 100%;
+    max-height: 100%;
+    vertical-align: middle;
 
     &::before {
       display: inline-block;
@@ -95,11 +106,14 @@
       content: "";
       vertical-align: middle;
     }
+
+    &--active {
+      display: inline-block;
+    }
   }
 
   &__photo {
     position: relative;
-    display: block;
     display: inline-block;
     width: auto;
     max-width: 100%;
@@ -107,6 +121,44 @@
     max-height: 100%;
     margin: 0 auto;
     vertical-align: middle;
+  }
+
+  &__share {
+    @media @mobileAndTablet {
+      display: none;
+    }
+
+    @media @desktop {
+      position: relative;
+      top: -61px;
+      right: 14px;
+      display: block;
+      width: 55px;
+      height: 55px;
+      margin-left: auto;
+      background-image: linear-gradient(135deg, @socialPinterestLightBackground, @socialPinterestLightBackground 50%, @socialPinterestDarkBackground 50%);
+      background-repeat: no-repeat;
+      transition: box-shadow 200ms ease-out;
+    }
+
+    &:hover {
+      box-shadow: inset 2px 2px 4px fade(white, 40%),
+      inset -2px -2px 2px fade(black, 40%);
+    }
+
+    &:active {
+      box-shadow: inset 2px 2px 4px fade(black, 40%),
+      inset -2px -2px 4px fade(white, 40%);
+    }
+  }
+
+  &__share-icon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    display: block;
+    fill: @socialIconFill;
+    transform: translateX(-50%) translateY(-50%);
   }
 
   &__btn-set {
@@ -148,6 +200,8 @@
     position: relative;
     display: block;
     padding: 0;
+    cursor: pointer;
+    transition: box-shadow 200ms ease-out;
     border: none;
     border-radius: 50%;
     background-color: @btnControlBackground;
@@ -167,11 +221,30 @@
       height: 56px;
     }
 
+    &:hover {
+      @media @mobileOnly {
+        box-shadow: 0 0 3px 3px fade(@btnControlShadowHover, 30%);
+      }
+
+      @media @tabletOnly {
+        box-shadow: 0 0 6px 6px fade(@btnControlShadowHover, 30%);
+      }
+
+      @media @desktop {
+        box-shadow: 0 0 4px 4px fade(@btnControlShadowHover, 30%);
+      }
+    }
+
+    &:active::before {
+      opacity: 0.6;
+    }
+
     &::before {
       position: absolute;
       top: 50%;
       display: block;
       content: "";
+      transition: opacity 200ms ease-out;
       transform: translateX(-50%) translateY(-50%);
 
       @media @mobileOnly {
@@ -222,7 +295,7 @@
         }
 
         @media @desktop {
-          left: 26px;
+          left: 29px;
           border-left: 9px solid @btnArrow;
         }
       }
@@ -244,47 +317,72 @@
       display: flex;
       flex-direction: column;
       flex-shrink: 1;
-      justify-content: space-between;
+      justify-content: flex-start;
       width: 372px;
       height: 100%;
+      max-height: 100%;
       padding-top: 28px;
       background-color: @contentBackground;
     }
   }
 
-  &__content-wrapper {
+  &__text {
+    display: none;
+
     @media @desktop {
       overflow: auto;
+      flex-shrink: 1;
+      margin-bottom: auto;
       padding-right: 33px;
-      padding-bottom: 30px;
+      padding-bottom: 33px;
       padding-left: 33px;
+    }
+
+    &--active {
+      display: block;
     }
   }
 
-  &__toggle {
+  &__toggle-container {
     @media @mobileAndTablet {
       display: none;
     }
 
     @media @desktop {
-      font-size: 12px;
+      min-height: 47px;
+      padding-right: 33px;
+      padding-bottom: 17px;
+      padding-left: 33px;
+    }
+  }
+
+  &__toggle {
+    @media @desktop {
+      font-size: 0;
       line-height: 26px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
       color: inherit;
+    }
+
+    &:hover span:first-child {
+      box-shadow: 0 0 4px 4px fade(@toggleIconShadowHover, 40%);
+    }
+
+    &:active span:first-child {
+      box-shadow: 0 0 2px 2px fade(@toggleIconShadowActive, 40%);
     }
   }
 
   &__toggle-wrapper {
     position: relative;
-    display: block;
+    display: inline-block;
     width: 30px;
     height: 30px;
     margin-right: 9px;
     margin-left: -2px;
+    vertical-align: middle;
     border-radius: 50%;
     background-color: @toggleIconBackground;
+    transition: box-shadow 200ms ease-out;
   }
 
   &__toggle-icon {
@@ -296,27 +394,32 @@
   }
 
   &__toggle-label {
-    display: block;
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   &__title {
-    .desktop-active();
-
     font-size: 18px;
     line-height: 22px;
-    margin-top: 17px;
+    margin-top: 0;
     margin-bottom: 19px;
+
+    @media @mobileAndTablet {
+      display: none;
+    }
   }
 
   &__description {
-    .desktop-active();
-
     margin-bottom: 20px;
+
+    @media @mobileAndTablet {
+      display: none;
+    }
   }
 
   &__author {
     line-height: 22px;
-    display: none;
     margin: 0;
 
     @media @mobileOnly {
@@ -342,10 +445,6 @@
       font-size: 11px;
       line-height: 22px;
     }
-
-    &--active {
-      display: block;
-    }
   }
 
   &__ad-container {
@@ -360,6 +459,7 @@
       line-height: 26px;
       height: 321px;
       min-height: 321px;
+      margin-top: 33px;
       padding: 34px;
       text-transform: uppercase;
       color: @adTxtColor;
@@ -369,39 +469,19 @@
   }
 
   &__ad {
+    display: none;
     height: 100%;
     text-align: center;
     background-color: #fff;
+
+    &--active {
+      display: block;
+    }
   }
 
   &__ad-text {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-  }
-
-  &__share {
-    @media @mobileAndTablet {
-      display: none;
-    }
-
-    @media @desktop {
-      position: absolute;
-      width: 73px;
-      height: 73px;
-      background-image: linear-gradient(135deg, @socialPinterestLightBackground, @socialPinterestLightBackground 50%, @socialPinterestDarkBackground 50%);
-      background-repeat: no-repeat;
-      bottom: 0;
-      right: 0;
-    }
-  }
-
-  &__share-icon {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    display: block;
-    fill: @socialIconFill;
-    transform: translateX(-50%) translateY(-50%);
   }
 }

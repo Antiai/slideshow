@@ -1,14 +1,15 @@
 .gallery {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
+  display: none;
   width: 100%;
   height: 100%;
   background-color: @galleryBackground;
 
   &--open {
     display: block;
+    animation: galleryOpen 500ms ease-out;
   }
 
   &__header {
@@ -61,8 +62,8 @@
   }
 
   &__toggle {
-    display: block;
     position: absolute;
+    display: block;
 
     @media @mobileOnly {
       top: 0;
@@ -83,11 +84,11 @@
     }
 
     @media @desktop {
-      background-color: @galleryToggleBackgroundDesktop;
-      right: 16px;
       top: 16px;
+      right: 16px;
       width: @galleryToggleSizeDesktop;
       height: @galleryToggleSizeDesktop;
+      background-color: @galleryToggleBackgroundDesktop;
     }
 
     &::before {
@@ -95,6 +96,7 @@
       display: block;
       height: 1px;
       content: "";
+      transition: transform 200ms ease-out;
       transform: rotateZ(45deg);
       background-color: @galleryToggleCross;
 
@@ -120,9 +122,9 @@
     &::after {
       position: absolute;
       display: block;
-
       height: 1px;
       content: "";
+      transition: transform 200ms ease-out;
       transform: rotateZ(-45deg);
       background-color: @galleryToggleCross;
 
@@ -144,6 +146,22 @@
         width: 29px;
       }
     }
+
+    &:hover::before {
+      transform: scale(1.15) rotateZ(45deg);
+    }
+
+    &:active::before {
+      transform: scale(0.85) rotateZ(45deg);
+    }
+
+    &:hover::after {
+      transform: scale(1.15) rotateZ(-45deg);
+    }
+
+    &:active::after {
+      transform: scale(0.85) rotateZ(-45deg);
+    }
   }
 
   &__footer {
@@ -151,8 +169,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: @galleryFooterBackground;
     border-top: 1px solid @galleryFooterBorderColor;
+    background-color: @galleryFooterBackground;
 
     @media @mobileOnly {
       min-width: @minWidth;
@@ -178,6 +196,7 @@
 
   &__logo {
     margin-right: auto;
+    transition: opacity 200ms ease-out;
 
     @media @mobileOnly {
       width: 75px;
@@ -190,13 +209,21 @@
     @media @desktop {
       width: 93px;
     }
+
+    &:hover {
+      opacity: 0.65;
+    }
+
+    &:active {
+      opacity: 0.35;
+    }
   }
 
   &__logo-icon {
     display: block;
+    fill: @galleryLogoFill;
     width: 100%;
     height: auto;
-    fill: @galleryLogoFill;
   }
 
   &__container {
@@ -223,10 +250,26 @@
   }
 
   &__button {
-    color: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: inherit;
+
+    &:hover span:last-child {
+      box-shadow: none;
+    }
+
+    &:active span:last-child {
+      background-color: @galleryFooterBtnBackgroundActive;
+
+      @media @mobileOnly {
+        box-shadow: inset 0 2px 3px 1px fade(@galleryFooterBtnShadowActiveColor, 40%);
+      }
+
+      @media @tabletOnly {
+        box-shadow: inset 0 4px 6px 1px fade(@galleryFooterBtnShadowActiveColor, 40%);
+      }
+    }
   }
 
   &__button-label {
@@ -244,6 +287,8 @@
 
   &__icon-wrapper {
     display: block;
+    transition: box-shadow 200ms ease-out,
+    background-color 200ms ease-out;
 
     @media @mobileOnly {
       width: 31px;
@@ -256,7 +301,7 @@
       width: 62px;
       height: 62px;
       margin-left: 15px;
-      box-shadow: inset 2px 2px 3px 1px fade(@galleryFooterBtnShadowColor, 10%);
+      box-shadow: inset 4px 4px 6px 1px fade(@galleryFooterBtnShadowColor, 10%);
     }
 
     @media @mobileAndTablet {
@@ -266,13 +311,12 @@
     }
 
     &--active {
-
       @media @mobileOnly {
         box-shadow: inset 0 2px 3px 1px fade(@galleryFooterBtnShadowActiveColor, 40%);
       }
 
       @media @tabletOnly {
-        box-shadow: inset 0 3px 3px 1px fade(@galleryFooterBtnShadowActiveColor, 40%);
+        box-shadow: inset 0 4px 6px 1px fade(@galleryFooterBtnShadowActiveColor, 40%);
       }
 
       @media @mobileAndTablet {
@@ -282,13 +326,13 @@
   }
 
   &__icon {
-    display: block;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    display: block;
     fill: @btnIconFill;
     height: auto;
+    transform: translateX(-50%) translateY(-50%);
 
     &--share {
       @media @mobileOnly {
@@ -301,5 +345,15 @@
         width: 12px;
       }
     }
+  }
+}
+
+@keyframes galleryOpen {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

@@ -1,7 +1,7 @@
 .main {
   &__wrapper {
-    max-width: 960px;
     min-width: @minWidth;
+    max-width: 960px;
     margin-right: auto;
     margin-left: auto;
     padding-top: 50px;
@@ -24,6 +24,7 @@
     margin-top: 0;
     margin-bottom: 42px;
     text-align: center;
+    text-transform: uppercase;
   }
 
   &__content {
@@ -39,12 +40,23 @@
     margin-right: auto;
     margin-left: auto;
     padding: 14px;
+    transition: background-color 200ms ease-out,
+    box-shadow 200ms ease-out;
     text-align: center;
     text-transform: uppercase;
     color: inherit;
-    background-color: @btnBackground;
     border-radius: 25px;
-    box-shadow: inset 2px 2px 1px @btnShadowDark,
-    inset -2px -2px 1px @btnShadowLight;
+    background-color: @btnBackground;
+    box-shadow: inset 0 2px 1px @btnShadowLight,
+    inset 0 -2px 1px @btnShadowDark;
+
+    &:hover {
+      background-color: @btnBackgroundHover;
+    }
+
+    &:active {
+      box-shadow: inset 0 2px 1px @btnShadowDark,
+      inset 0 -2px 1px @btnShadowLight;
+    }
   }
 }
