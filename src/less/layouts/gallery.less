@@ -51,10 +51,6 @@
       height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeightTablet));
     }
 
-    @media @mobileAndTablet {
-      z-index: -1;
-    }
-
     @media @desktop {
       height: calc(~"100% - " (@galleryHeaderHeight + @galleryFooterHeightDesktop));
       display: flex;
@@ -165,9 +161,10 @@
   }
 
   &__footer {
+    position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     border-top: 1px solid @galleryFooterBorderColor;
     background-color: @galleryFooterBackground;
