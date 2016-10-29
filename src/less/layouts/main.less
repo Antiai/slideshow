@@ -1,0 +1,62 @@
+.main {
+  &__wrapper {
+    min-width: @minWidth;
+    max-width: 960px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    @media @mobileOnly {
+      padding-right: @mobileSideOffset;
+      padding-left: @mobileSideOffset;
+    }
+
+    @media @tablet {
+      padding-right: @tabletSideOffset;
+      padding-left: @tabletSideOffset;
+    }
+  }
+
+  &__title {
+    font-size: 22px;
+    line-height: 28px;
+    margin-top: 0;
+    margin-bottom: 42px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    margin-top: 0;
+    margin-bottom: 50px;
+  }
+
+  &__button {
+    font-size: 16px;
+    line-height: 22px;
+    display: block;
+    max-width: 320px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 14px;
+    transition: background-color 200ms ease-out,
+    box-shadow 200ms ease-out;
+    text-align: center;
+    text-transform: uppercase;
+    color: inherit;
+    border-radius: 25px;
+    background-color: @btnBackground;
+    box-shadow: inset 0 2px 1px @btnShadowLight,
+    inset 0 -2px 1px @btnShadowDark;
+
+    &:hover {
+      background-color: @btnBackgroundHover;
+    }
+
+    &:active {
+      box-shadow: inset 0 2px 1px @btnShadowDark,
+      inset 0 -2px 1px @btnShadowLight;
+    }
+  }
+}

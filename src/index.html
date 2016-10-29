@@ -5,45 +5,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Slideshow</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="img/favicon/manifest.json">
+  <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg">
+  <meta name="apple-mobile-web-app-title" content="Slideshow">
+  <meta name="application-name" content="Slideshow">
+  <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Picture element HTML5 shiv
+    document.createElement( "picture" );
+  </script>
+  <script src="js/picturefill.min.js" async></script>
 </head>
 <body>
+  <svg style="display:none">
+    <symbol id="share" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+      <path d="M18 9v9H0V0h9v2H2v14h14V9h2zm-7-9v1h5.293L8.646 8.646l.708.708L17 1.707V7h1V0h-7z"/>
+    </symbol>
+    <symbol id="thumb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22">
+      <path d="M6 6H0V0h6v6zm8-6H8v6h6V0zm8 0h-6v6h6V0zM6 8H0v6h6V8zm8 0H8v6h6V8zm8 0h-6v6h6V8zM6 16H0v6h6v-6zm8 0H8v6h6v-6zm8 0h-6v6h6v-6z"/>
+    </symbol>
+    <symbol id="pinterest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 21">
+      <path d="M9.54 0C3.2 0 0 4.11 0 7.54c0 2.07.87 3.92 2.73 4.61.31.11.58 0 .67-.3.06-.21.21-.75.27-.97.09-.3.05-.41-.19-.67-.53-.58-.88-1.32-.88-2.37 0-3.05 2.53-5.78 6.58-5.78 3.59 0 5.56 1.98 5.56 4.62 0 3.48-1.7 6.41-4.23 6.41-1.4 0-2.44-1.04-2.11-2.32.4-1.53 1.18-3.18 1.18-4.28 0-.99-.59-1.81-1.8-1.81-1.44 0-2.58 1.33-2.58 3.12 0 1.14.43 1.91.43 1.91S4.16 15.3 3.9 16.28c-.51 1.95-.08 4.34-.04 4.58.02.14.23.18.32.07.13-.16 1.83-2.05 2.41-3.95.16-.54.94-3.32.94-3.32.46.8 1.82 1.5 3.26 1.5 4.29 0 7.21-3.54 7.21-8.27C18 3.33 14.64 0 9.54 0z"/>
+    </symbol>
+    <symbol id="facebook" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 20">
+      <path d="M2.55 20v-9.38H0V7.24h2.55V4.35C2.55 2.08 4.06 0 7.54 0c1.41 0 2.45.13 2.45.13L9.9 3.29s-1.06-.01-2.22-.01c-1.25 0-1.45.56-1.45 1.49v2.47H10l-.16 3.38H6.23V20H2.55z"/>
+    </symbol>
+    <symbol id="google" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 16.18">
+      <path d="M8.45 9.28l-.8-.59c-.3-.2-.61-.39-.61-.89 0-.39.3-.69.61-.98.91-.69 1.81-1.38 1.81-2.96S8.45 1 7.95 1h1.21l1.41-1H6.14C5.03 0 3.52.36 2.31 1.34 1.41 2.03.9 3.44.9 4.43.9 6.1 2.21 8 4.73 8h.71c-.1 0-.2.15-.2.54 0 .59.3.86.6 1.25-1.01.1-2.82.14-4.13.92C.4 11.5 0 12.46 0 13.25c0 1.47 1.51 2.93 4.63 2.93 3.62 0 5.64-1.98 5.64-3.94 0-1.48-.91-2.18-1.82-2.96zM5.53 7.02c-1.91 0-2.72-2.36-2.72-3.74 0-.49.1-1.08.51-1.58.3-.39.9-.69 1.51-.69 1.81 0 2.72 2.36 2.72 3.93 0 .3 0 .98-.51 1.47-.4.31-1 .61-1.51.61zm0 8.35c-2.31 0-3.82-1.08-3.82-2.55 0-1.48 1.31-1.97 1.81-2.16.9-.29 2.11-.29 2.31-.29h.61c1.61 1.09 2.31 1.67 2.31 2.76.01 1.26-1.1 2.24-3.22 2.24zM19 7.3h-3.01V4.29H14V7.3h-3v1.99h3v3h1.99v-3H19z"/>
+    </symbol>
+    <symbol id="twitter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 19">
+      <path d="M23 2.25c-.85.38-1.76.64-2.71.75.97-.59 1.72-1.53 2.07-2.65-.91.55-1.92.95-3 1.16A4.65 4.65 0 0 0 15.92 0c-2.61 0-4.72 2.15-4.72 4.8 0 .38.04.74.12 1.09-3.92-.2-7.4-2.11-9.73-5.01-.39.71-.63 1.53-.63 2.41 0 1.66.83 3.13 2.1 3.99a4.61 4.61 0 0 1-2.14-.6v.06c0 2.32 1.63 4.26 3.79 4.7-.4.11-.81.17-1.24.17-.3 0-.6-.03-.89-.09.6 1.91 2.34 3.29 4.41 3.33a9.337 9.337 0 0 1-5.86 2.05c-.38 0-.76-.02-1.13-.07C2.09 18.21 4.57 19 7.23 19c8.68 0 13.43-7.31 13.43-13.65 0-.21 0-.41-.01-.62.92-.67 1.72-1.52 2.35-2.48z"/>
+    </symbol>
+  </svg>
   <main class="main">
     <div class="main__wrapper">
-      <h1>Lorem Ipsum</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit architecto accusantium consequatur ipsum sequi aliquam, praesentium magni ab sit magnam sunt officia recusandae similique quaerat libero quam sint, mollitia id. Dolores autem earum illum, error obcaecati delectus, fuga assumenda, excepturi, impedit et sit. Est voluptatum dolorum laboriosam blanditiis, iusto laudantium aliquam beatae quibusdam sint, tempore distinctio possimus sit temporibus corporis voluptatem accusantium at impedit quis deleniti esse autem eum adipisci veniam, exercitationem repellendus. Accusantium delectus voluptatem perferendis molestiae ad sequi temporibus sit repellat quasi quae sed culpa fugiat in dignissimos ex facilis alias quam, eligendi consectetur laborum quod? Molestiae ullam alias quo obcaecati voluptatum fugiat repellendus eligendi exercitationem, beatae recusandae dolores error porro mollitia voluptates blanditiis, a id rem quisquam! Odit enim possimus aspernatur in quibusdam adipisci reprehenderit qui, ipsa sapiente fugiat dolores nostrum accusantium accusamus dolorem temporibus ducimus necessitatibus, sed, delectus blanditiis deserunt eum laborum aperiam magni impedit. Minus!</p>
-      <a class="" href="#">Start Slideshow</a>
+      <h1 class="main__title">Lorem Ipsum</h1>
+      <p class="main__content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit architecto accusantium consequatur ipsum sequi aliquam, praesentium magni ab sit magnam sunt officia recusandae similique quaerat libero quam sint, mollitia id. Dolores autem earum illum, error obcaecati delectus, fuga assumenda, excepturi, impedit et sit. Est voluptatum dolorum laboriosam blanditiis, iusto laudantium aliquam beatae quibusdam sint, tempore distinctio possimus sit temporibus corporis voluptatem accusantium at impedit quis deleniti esse autem eum adipisci veniam, exercitationem repellendus. Accusantium delectus voluptatem perferendis molestiae ad sequi temporibus sit repellat quasi quae sed culpa fugiat in dignissimos ex facilis alias quam, eligendi consectetur laborum quod? Molestiae ullam alias quo obcaecati voluptatum fugiat repellendus eligendi exercitationem, beatae recusandae dolores error porro mollitia voluptates blanditiis, a id rem quisquam! Odit enim possimus aspernatur in quibusdam adipisci reprehenderit qui, ipsa sapiente fugiat dolores nostrum accusantium accusamus dolorem temporibus ducimus necessitatibus, sed, delectus blanditiis deserunt eum laborum aperiam magni impedit. Minus!</p>
+      <a class="main__button" href="#">Start Slideshow</a>
     </div>
   </main>
   <section class="gallery">
     <div class="gallery__header">
-      <a href="#" class="gallery__close">Close gallery</a>
+      <div class="gallery__header-ad">Ad</div>
+      <a href="#" class="gallery__toggle"><span class="hidden">Close gallery</span></a>
     </div>
     <div class="gallery__wrapper">
       <section class="slideshow">
-        <p class="slideshow__counter"><span class="slideshow__number">1</span>/<span class="slideshow__quantity">10</span></p>
         <div class="slideshow__container">
-          <div class="slideshow__item"><img src="http://placehold.it/513x766" width="513" height="766" alt="Slide-1"></div>
+          <div class="slideshow__counter"><span class="slideshow__number">1</span>/<span class="slideshow__quantity">10</span></div>
+          <div class="slideshow__item">
+            <div class="slideshow__item-wrapper">
+              <!-- Use class "slideshow__picture--active" to show another image -->
+              <picture class="slideshow__picture  slideshow__picture--active">
+                <source media="(min-width: 1150px)" srcset="img/gallery/photo-1-desktop@2x.jpg 2x, img/gallery/photo-1-desktop@1x.jpg 1x">
+                <source media="(min-width: 768px)" srcset="img/gallery/photo-1-tablet@2x.jpg 2x, img/gallery/photo-1-tablet@1x.jpg 1x">
+                <img class="slideshow__photo" src="img/gallery/photo-1-mobile@1x.jpg" srcset="img/gallery/photo-1-mobile@2x.jpg 2x" width="255" height="283" alt="Slide-1">
+              </picture>
+              <a href="#" class="slideshow__share">
+                <svg class="slideshow__share-icon" width="18" height="22">
+                  <use xlink:href="#pinterest"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="slideshow__btn-set">
+            <button type="button" class="slideshow__btn  slideshow__btn--prev"><span class="hidden">Previous</span></button>
+            <button type="button" class="slideshow__btn  slideshow__btn--next"><span class="hidden">Next</span></button>
+          </div>
         </div>
-        <div class="slideshow__btn-set">
-          <button type="button" class="slideshow__btn  slideshow__btn--prev"><span class="hidden">Previous</span></button>
-          <button type="button" class="slideshow__btn  slideshow__btn--next"><span class="hidden">Next</span></button>
-        </div>
+        <section class="slideshow__content">
+          <div class="slideshow__toggle-container">
+            <a href="#" class="slideshow__toggle">
+              <span class="slideshow__toggle-wrapper">
+                <svg class="slideshow__toggle-icon" height="14" width="14">
+                  <use xlink:href="#thumb"/>
+                </svg>
+              </span>
+              <span class="slideshow__toggle-label">Thumbnails</span>
+            </a>
+          </div>
+          <!-- Use class "slideshow__text--active" to show another text block -->
+          <section class="slideshow__text  slideshow__text--active">
+            <h2 class="slideshow__title">
+              Fake It Until You Make It: Eyes That Pop And Lips That Attracts
+            </h2>
+            <p class="slideshow__description">
+              Through all of our handy beauty products, we enhance and improve upon our features that we were born with, and play up the ones that we wish had a bit more prominence. So that saying “fake it until you make it” can really ring true in the beauty world
+            </p>
+            <p class="slideshow__author">
+              Photo: / Pascal Le Segretain/Getty Images
+            </p>
+          </section>
+          <div class="slideshow__ad-container">
+            <div class="slideshow__ad  slideshow__ad--active">
+              <div class="slideshow__ad-text">Ad</div>
+            </div>
+          </div>
+        </section>
       </section>
+      <ul class="social">
+        <li class="social__item  social__item--pinterest">
+          <a href="#" class="social__link  social__link--pinterest">
+            <svg class="social__icon  social__icon--pinterest" width="18" height="21">
+              <use xlink:href="#pinterest"/>
+            </svg>
+            <span class="social__action">Pin</span>
+          </a>
+        </li>
+        <li class="social__item  social__item--facebook">
+          <a href="#" class="social__link  social__link--facebook">
+            <svg class="social__icon  social__icon--facebook" width="10" height="20">
+              <use xlink:href="#facebook"/>
+            </svg>
+            <span class="social__action">Like</span>
+          </a>
+        </li>
+        <li class="social__item  social__item--google">
+          <a href="#" class="social__link  social__link--google">
+            <svg class="social__icon  social__icon--google" width="19" height="16">
+              <use xlink:href="#google"/>
+            </svg>
+            <span class="social__action">+1</span>
+          </a>
+        </li>
+        <li class="social__item  social__item--twitter">
+          <a href="#" class="social__link  social__link--twitter">
+            <svg class="social__icon  social__icon--twitter" width="23" height="19">
+              <use xlink:href="#twitter"/>
+            </svg>
+            <span class="social__action">Tweet</span>
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="gallery__footer">
-      <div class="gallery__logo">
-        <img src="http://placehold.it/93x24" width="93" height="24" alt="Logo">
+      <a href="#" class="gallery__logo">
+        <svg class="gallery__logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 20" width="75" height="20">
+          <path d="M71.55 0h.53c.24.06.51.15.63.39.1.25-.03.52-.15.74-.9 1.3-1.46 2.8-2.07 4.26-.4 1-.81 2.01-1.14 3.04-.12.37-.24.75-.25 1.14.73-.64 1.4-1.48 2.4-1.68.53-.15 1.11.26 1.21.79.14.71.05 1.44-.05 2.15-.07.49.03 1.04.42 1.37.3.22.69.11 1.01.01.36-.1.62-.37.91-.58-.16.64-.71 1.08-1.27 1.38-.35.17-.73.35-1.12.31-.47-.09-.84-.51-.94-.97-.18-.76-.03-1.55-.06-2.32-.02-.21-.02-.45-.18-.61-.2-.08-.41.05-.58.14-.73.44-1.38 1.02-1.82 1.76-.3.52-.56 1.06-.78 1.62-.08.18-.2.41-.42.42-.36-.03-.72-.3-.78-.67-.06-.39.08-.77.17-1.15.63-2.36 1.39-4.68 2.29-6.95.44-1.09.89-2.17 1.28-3.27.17-.48.36-1 .76-1.32zM4.46.29c.27-.17.69-.13.87.15.23.32.23.75.09 1.11-.1.3-.28.58-.31.91-.01.18.19.31.36.26.47-.08.96-.19 1.44-.08.83.18 1.48.89 1.72 1.69.21.8.19 1.72-.28 2.42-.21.34-.5.62-.69.98.64.32 1.31.78 1.5 1.51.06.62 0 1.31-.37 1.84a5.48 5.48 0 0 1-1.38 1.46c-.59.45-1.28.74-1.95 1.06-.59.28-1.2.52-1.84.66-.42.1-.89.04-1.26-.2-.2-.13-.14-.41-.03-.58.17-.29.51-.39.81-.48 1.57-.47 3.16-1.11 4.34-2.3.34-.33.53-.9.24-1.32-.32-.44-.94-.45-1.42-.35-.98.21-1.88.69-2.81 1.04-.23.11-.44-.09-.62-.21-.18.15-.29.37-.36.59-.51 1.44-.85 2.93-1.36 4.37-.12.37-.41.76-.84.74-.3.01-.29-.36-.31-.57v-.43c.1-.75.35-1.46.55-2.18.88-2.94 1.81-5.87 2.67-8.82.19-.7.4-1.39.51-2.11.07-.48.33-.92.73-1.16zm.79 3.64c-.55.05-.82.6-1.02 1.05-.36.89-.61 1.83-.88 2.76-.03.18-.15.42.02.57.25.14.55.07.82.03 1.11-.17 2.13-.81 2.8-1.7.38-.62.68-1.46.32-2.15-.43-.66-1.35-.72-2.06-.56zM51.86.28c.25-.19.62-.04.75.22.17.35.29.79.05 1.13-.91 2.34-1.78 4.68-2.71 7.01-.05.13-.07.27-.06.41.24-.06.48-.14.72-.18 1.17-.18 2.32-.46 3.44-.85.38-.11.47-.55.6-.88.51-1.57 1-3.15 1.45-4.75.38 0 .79.27.84.66.11.43 0 .87-.11 1.29-.22.97-.56 1.93-.59 2.93.36.07.74-.21 1.08-.04.3.31.19.9-.18 1.11-.38.22-.84.24-1.23.43-.16.09-.23.28-.29.44-.5 1.45-1.02 2.9-1.57 4.34-.21.55-.5 1.07-.86 1.55-.06.09-.16.13-.25.18 0-1.05.44-2.03.58-3.05.12-.8.34-1.58.46-2.38.04-.14-.05-.29-.19-.31-.29-.05-.57.03-.85.1l-2.55.75c-.43.13-.86.28-1.21.57-.24.2-.33.52-.44.8-.6 1.62-1.1 3.28-1.65 4.92-.13.31-.31.69-.68.76-.26-.07-.43-.32-.6-.52 0-.36.13-.7.22-1.04.41-1.38.86-2.75 1.33-4.11.04-.17.09-.37-.02-.52-.17-.17-.48-.22-.54-.49-.08-.32-.06-.71.21-.94.34-.3.8-.45 1.12-.78.24-.28.36-.64.51-.98.93-2.33 1.76-4.69 2.72-7.01.13-.27.21-.61.5-.77zM59.56 3.8c.19-.55 1.07-.72 1.41-.22.3.47.19 1.05.36 1.56.38 1.21 1.37 2.19 2.54 2.65.25-.01.49-.11.74-.07.3.02.57.18.87.24.25.05.42-.25.68-.17.21.04.59.09.56.37-.4 1.02-.51 2.12-.79 3.18-.2.92-.6 1.78-.96 2.64-.39.95-.87 1.85-1.43 2.7-.64 1.05-1.5 1.98-2.55 2.62-.56.36-1.29.32-1.87.02-.51-.29-.66-1.01-.37-1.51.39-.74 1.01-1.34 1.6-1.92.36-.32.68-.67 1.06-.97-.76.86-1.69 1.59-2.27 2.59-.19.31-.23.76 0 1.06.33.26.8.08 1.11-.14.74-.53 1.44-1.15 1.96-1.92 1.04-1.49 1.76-3.18 2.36-4.89.08-.22.15-.46.15-.7a.85.85 0 0 0-.32.21c-.46.49-.99.91-1.53 1.31-.52.38-1.1.74-1.76.77-.41.01-.88-.31-.87-.75-.01-.57.18-1.11.41-1.63.34-.74.76-1.46 1.39-1.99.48-.4 1.03-.73 1.6-.97-1.28-.51-2.1-1.66-3.02-2.62-.25-.32-.71-.32-.97-.62-.27-.18-.21-.55-.09-.83zm4.34 5.39c-.72.44-1.33 1.06-1.82 1.75-.14.19-.26.4-.31.63.13-.02.27-.05.39-.12.83-.48 1.57-1.1 2.21-1.8.1-.11.17-.25.24-.38-.17-.22-.48-.24-.71-.08zM32.09 4.85c.16-.41.73-.39 1.03-.16.27.25.48.67.31 1.03-.29.63-.42 1.3-.6 1.96-.07.3-.17.62-.12.93.01.14.16.17.26.22.59.18 1.2.24 1.82.23.17-.33.48-.6.87-.6.33-.06.56.33.44.62-.26.73-.58 1.46-.61 2.25-.02.19.07.53.32.42.6-.2 1.06-.66 1.45-1.15.53-.66.99-1.38 1.54-2.02.38-.47 1.28-.08 1.2.51-.05.5 0 .99-.02 1.49-.06 1.03-.2 2.05-.35 3.07-.42 2.04-1.63 3.94-3.38 5.08-.92.6-1.93 1.19-3.06 1.27h-.08c-.65.06-1.25-.58-1.1-1.23.11-.51.39-.97.69-1.38-.06.32-.28.61-.26.95.01.2.17.35.36.4.61.15 1.28.05 1.81-.3.82-.53 1.58-1.16 2.25-1.88a8.122 8.122 0 0 0 1.66-3.58c.15-.68.28-1.38.24-2.08-.29.12-.52.34-.73.57-.43.46-.93.84-1.44 1.21-.31.22-.65.44-1.04.41-.47-.01-1-.21-1.23-.65-.22-.43-.21-.94-.09-1.4.17-.56.31-1.12.48-1.68-.74.11-1.47.27-2.19.48-.27.06-.37.34-.48.56-.44 1-.77 2.04-1.17 3.05-.17.45-.68.71-1.14.62-.11-.02-.23-.1-.23-.22-.02-.34.11-.66.21-.97-.35.4-.76.87-1.35.82-.78.02-1.42-.76-1.34-1.52.05-.45.21-.89.19-1.36-.11.08-.23.16-.32.27-.71.86-1.53 1.65-2.54 2.14-.44.17-1.01.36-1.41.01-.28-.22-.25-.61-.22-.92-.37.44-.76.98-1.37 1.07-.67-.03-1.29-.51-1.53-1.13-.14-.31-.22-.7-.54-.88-.28-.1-.54.12-.77.25-.95.65-1.89 1.39-3.03 1.68-.2.04-.46.13-.63-.04-.46-.44-.46-1.21-.1-1.71.69-.99 1.45-1.95 2.4-2.71.59-.47 1.25-.83 1.92-1.15.41-.19.9-.2 1.32-.03.3.12.46.42.58.7.07.18.14.38.07.57-.1.2-.36.29-.57.26-.26-.05-.42-.31-.68-.36-.26.01-.48.17-.71.29-.76.39-1.4.97-1.96 1.61-.23.28-.49.55-.62.9.34-.15.63-.38.93-.58.78-.54 1.61-.98 2.5-1.32.24-.08.52-.19.75-.05.24.15.42.39.51.66.11.29-.13.55-.2.81-.18.49-.06 1.16.42 1.42.6.18 1.34-.28 1.46-.9.19-.68.49-1.32.73-1.98.08-.28.16-.69-.15-.86-.48-.15-1.05-.11-1.44-.49.47.07.9.38 1.39.28.33-.1.48-.47.8-.59.28-.1.65-.07.84.17.16.23.1.54.02.79-.25.68-.57 1.34-.82 2.02-.1.24-.13.5-.1.75.34.02.62-.2.88-.39.86-.67 1.57-1.5 2.38-2.23.24-.21.46-.46.78-.56.19-.06.45-.03.56.17.05.2 0 .4-.03.59-.17.84-.41 1.67-.46 2.52-.01.31.02.71.34.87.34.15.73.04 1.04-.13.32-.16.33-.58.48-.87.21-.6.56-1.17.61-1.82-.4-.05-.8.14-1.19.03-.28-.27-.06-.74.25-.88.34-.25.78-.23 1.15-.39.41-.43.47-1.07.65-1.62.22-.72.23-1.5.51-2.21z"/>
+          <path d="M57.72 8.14c.42-.48 1.12-.88 1.77-.61.27.14.15.49.08.72-.51 1.35-.73 2.8-1.37 4.09-.17.32-.35.66-.64.9-.19.17-.46.14-.7.11-.07-.38.03-.75.11-1.11.25-1.13.56-2.24.9-3.35.06-.2.09-.42.09-.63-.09-.04-.16-.08-.24-.12zM11.21 7.96c.47-.28 1.02-.51 1.59-.44.26.01.55.12.64.39.2.52.22 1.21-.22 1.63-.46.41-1.03.69-1.59.95-.31.15-.65.04-.98.05-.34.47-.33 1.18.11 1.58.34.36.89.32 1.33.18.64-.21 1.27-.46 1.87-.79.54-.29.92-.8 1.39-1.18a8.945 8.945 0 0 1-2.66 2.68c-.72.42-1.64.58-2.42.21-.6-.33-1.07-.95-1.09-1.65-.07-.74.19-1.46.54-2.09.35-.63.89-1.13 1.49-1.52zm.02 1.58c.3.12.56-.12.8-.27.2-.13.45-.33.32-.6-.48.04-1.04.36-1.12.87z"/>
+        </svg>
+      </a>
+      <div class="gallery__container">
+        <a href="#" class="gallery__button  gallery__button--share">
+          <span class="gallery__button-label">Share</span>
+          <span class="gallery__icon-wrapper">
+            <svg class="gallery__icon  gallery__icon--share" width="18" height="18">
+              <use xlink:href="#share"/>
+            </svg>
+          </span>
+        </a>
       </div>
       <div class="gallery__container">
-        <p class="gallery__button-label">Share</p>
-        <a href="#" class="gallery__button"><img src="http://placehold.it/18x18" width="18" height="18" alt=""></a>
-      </div>
-      <div class="gallery__container">
-        <p class="gallery__button-label">Thumb</p>
-        <a href="#" class="gallery__button"><img src="http://placehold.it/23x23" width="23" height="23" alt=""></a>
+        <a href="#" class="gallery__button  gallery__button--thumb">
+          <span class="gallery__button-label">Thumb</span>
+          <span class="gallery__icon-wrapper">
+            <svg class="gallery__icon  gallery__icon--thumb" width="22" height="22">
+              <use xlink:href="#thumb"/>
+            </svg>
+          </span>
+        </a>
       </div>
     </div>
   </section>
+  <script defer src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+.include-custom-font(@src, @family, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: @family;
+    font-weight: @weight;
+    font-style: @style;
+    src: url("../fonts/@{src}.woff") format("woff"),
+    url("../fonts/@{src}.woff2") format("woff2");
+  }
+}
+
+.clearfix() {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.desktop-active() {
+  display: none;
+
+  &--active {
+    @media @desktop {
+      display: block;
+    }
+  }
+}

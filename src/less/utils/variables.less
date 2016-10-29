@@ -1,0 +1,55 @@
+// BREAKPOINTS
+@minWidth: 320px;
+@tabletWidth: 768px;
+@desktopWidth: 1150px;
+
+// bound variables
+@tabletBeforeWidth: (@tabletWidth - 1px);
+@desktopBeforeWidth: (@desktopWidth - 1px);
+
+// MEDIA CONDITIONS
+@tablet: ~"screen and (min-width: @{tabletWidth})";
+@desktop: ~"screen and (min-width: @{desktopWidth})";
+
+@mobileOnly: ~"screen and (max-width: @{tabletBeforeWidth})";
+@tabletOnly: ~"screen and (min-width: @{tabletWidth}) and (max-width: @{desktopBeforeWidth})";
+@mobileAndTablet: ~"screen and (max-width: @{desktopBeforeWidth})";
+
+// offsets
+@mobileSideOffset: 25px;
+@tabletSideOffset: 35px;
+
+// #colors
+@white: #fff;
+@black: #000;
+@veryDarkGray: #171717;
+@veryDarkGrayLighter: #1e1e1e;
+@veryDarkGrayMediumDarker: #292929;
+@veryDarkGrayMedium: #2b2b2b;
+@veryDarkGrayLight: #2f2f2f;
+@veryDarkGrayLightLighter: #3b3b3b;
+@veryDarkGrayLightestDarker: #3d3d3d;
+@veryDarkGrayLightest: #454545;
+@veryDarkGrayUltraLight: #4f4f4f;
+@darkGrayDarker: #737373;
+@darkGray: #858585;
+@strongRed: #cb2028;
+@strongRedDarker: #b61f26;
+@darkModerateBlue: #3b5999;
+@darkModerateBlueDarker: #36508b;
+@brightRed: #de4b39;
+@brightRedDarker: #c94433;
+@pureBlue: #00acee;
+@pureBlueDarker: #00a2e0;
+
+//dimensions
+@galleryHeaderHeight: 90px;
+@galleryFooterHeightMobile: 43px;
+@galleryFooterHeightTablet: 86px;
+@galleryFooterHeightDesktop: 48px;
+@galleryToggleSizeMobile: 46px;
+@galleryToggleSizeTablet: 92px;
+@galleryToggleSizeDesktop: 54px;
+
+@socialHeightMobile: 65px;
+@socialHeightTablet: 129px;
