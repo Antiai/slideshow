@@ -20,7 +20,7 @@
   </script>
   <script src="js/picturefill.min.js" async></script>
 </head>
-<body>
+<body class="body">
   <svg style="display:none">
     <symbol id="share" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
       <path d="M18 9v9H0V0h9v2H2v14h14V9h2zm-7-9v1h5.293L8.646 8.646l.708.708L17 1.707V7h1V0h-7z"/>
@@ -60,11 +60,9 @@
           <div class="slideshow__item">
             <div class="slideshow__item-wrapper">
               <!-- Use class "slideshow__picture--active" to show another image -->
-              <picture class="slideshow__picture  slideshow__picture--active">
-                <source media="(min-width: 1150px)" srcset="img/gallery/photo-1-desktop@2x.jpg 2x, img/gallery/photo-1-desktop@1x.jpg 1x">
-                <source media="(min-width: 768px)" srcset="img/gallery/photo-1-tablet@2x.jpg 2x, img/gallery/photo-1-tablet@1x.jpg 1x">
-                <img class="slideshow__photo" src="img/gallery/photo-1-mobile@1x.jpg" srcset="img/gallery/photo-1-mobile@2x.jpg 2x" width="255" height="283" alt="Slide-1">
-              </picture>
+              <img class="slideshow__picture  slideshow__picture--active" src="img/gallery/photo-1-desktop@1x.jpg" width="594" height="892" alt="Slide 1">
+              <img class="slideshow__picture" src="img/gallery/photo-2-desktop@1x.jpg" width="594" height="892" alt="Slide 2">
+              <img class="slideshow__picture" src="img/gallery/photo-3-desktop@1x.jpg" width="594" height="892" alt="Slide 3">
               <a href="#" class="slideshow__share">
                 <svg class="slideshow__share-icon" width="18" height="22">
                   <use xlink:href="#pinterest"/>
@@ -100,12 +98,51 @@
               Photo: / Pascal Le Segretain/Getty Images
             </p>
           </section>
+          <section class="slideshow__text">
+            <h2 class="slideshow__title">
+              Lorem Ipsum attracts
+            </h2>
+            <p class="slideshow__description">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, natus ipsam sit omnis consequuntur nisi reiciendis esse optio enim? Iste.
+            </p>
+            <p class="slideshow__author">
+              Photo: / Pascal Le Segretain/Getty Images
+            </p>
+          </section>
+          <section class="slideshow__text">
+            <h2 class="slideshow__title">
+              Ipsum Lorem attracts too
+            </h2>
+            <p class="slideshow__description">
+              Eius praesentium nostrum repellat alias blanditiis facere iste reiciendis id, molestiae obcaecati.
+            </p>
+            <p class="slideshow__author">
+              Photo: / Pascal Le Segretain/Getty Images
+            </p>
+          </section>
           <div class="slideshow__ad-container">
             <div class="slideshow__ad  slideshow__ad--active">
               <div class="slideshow__ad-text">Ad</div>
             </div>
           </div>
         </section>
+        <ul class="slideshow__thumbnails">
+          <li class="slideshow__thumb">
+            <a href="" class="slideshow__thumb-link">
+              <img class="slideshow__thumb-item" src="img/gallery/thumb/thumb-1@1x.jpg" width="89" height="134" alt="Thumb 1" >
+            </a>
+          </li>
+          <li class="slideshow__thumb">
+            <a href="" class="slideshow__thumb-link">
+              <img class="slideshow__thumb-item" src="img/gallery/thumb/thumb-2@1x.jpg" width="89" height="134" alt="Thumb 2" >
+            </a>
+          </li>
+          <li class="slideshow__thumb">
+            <a href="" class="slideshow__thumb-link">
+              <img class="slideshow__thumb-item" src="img/gallery/thumb/thumb-3@1x.jpg" width="89" height="134" alt="Thumb 3">
+            </a>
+          </li>
+        </ul>
       </section>
       <ul class="social">
         <li class="social__item  social__item--pinterest">
