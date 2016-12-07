@@ -53,43 +53,47 @@ document.addEventListener("DOMContentLoaded", function(){
   // ###slide events
     //use any positive number for "next" direction and and negative number for "prev" direction (0)
   function slideDirection(arg) {
-    event.preventDefault();
     var sign = arg / Math.abs(arg);
-    for (var i = 0; i < slides.length; i++) {
-      if (slides[i].classList.contains("slideshow__picture--active")) {
-        slides[i].classList.remove("slideshow__picture--active");
-        text[i].classList.remove("slideshow__text--active");
-        if (sign > 0) {
-          if (i === (slides.length - 1)) {
-            i = 0;
-          } else {
-            i++;
-          };
-        } else if (sign < 0) {
-          if (i === 0) {
-            i = slides.length - 1;
-          } else {
-            i--;
-          };
-        };
-        slides[i].classList.add("slideshow__picture--active");
-        text[i].classList.add("slideshow__text--active");
-        number.innerHTML = i + 1;
-      };
+    var dir;
+    if (sign > 0) {
+      dir = next;
+    } else {
+      dir = prev;
     };
+    dir.addEventListener("click", function(event) {
+      event.preventDefault();
+      for (var i = 0; i < slides.length; i++) {
+        if (slides[i].classList.contains("slideshow__picture--active")) {
+          slides[i].classList.remove("slideshow__picture--active");
+          text[i].classList.remove("slideshow__text--active");
+          if (sign > 0) {
+            if (i === (slides.length - 1)) {
+              i = 0;
+            } else {
+              i++;
+            };
+          } else if (sign < 0) {
+            if (i === 0) {
+              i = slides.length - 1;
+            } else {
+              i--;
+            };
+          };
+          slides[i].classList.add("slideshow__picture--active");
+          text[i].classList.add("slideshow__text--active");
+          number.innerHTML = i + 1;
+        };
+      };
+    });
   };
 
-  // ####next events
+  // ####next slide
 
-  next.addEventListener("click", function(event) {
-    slideDirection(1); //positive number (>0) for next direction
-  });
+  slideDirection(1);
 
-  // ####prev events
+  //####previous slide
 
-  prev.addEventListener("click", function(event) {
-    slideDirection(-1); //negative number (<0) for prev direction
-  });
+   slideDirection(-1);
 
   //#Thumbnails
 
