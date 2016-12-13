@@ -13,9 +13,21 @@ document.addEventListener("DOMContentLoaded", function(){
     event.preventDefault();
     if (!slideshow.classList.contains("gallery--open")) {
       slideshow.classList.add("gallery--open");
-    };
+    }
     mainBlock.classList.add("body--gallery-open");
   });
+
+  function blockSpace() {
+    if (slideshow.classList.contains("gallery--open")) {
+      slideshowOpen.addEventListener("click", function(event) {
+        event.preventDefault();
+      });
+    } else {
+      slideshowOpen.removeEventListener("click", function(){});
+    }
+  }
+
+  blockSpace();
 
   // ##close gallery
 
@@ -23,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function(){
     if (slideshow.classList.contains("gallery--open")) {
       slideshow.classList.remove("gallery--open");
       thumbs.classList.remove("slideshow__thumbnails--active");
-    };
-  };
+    }
+  }
 
   window.addEventListener("keydown", function(event) {
     if (event.keyCode === 27) {
       galleryClose();
-    };
-    mainBlock.classList.remove("body--gallery-open");
+      mainBlock.classList.remove("body--gallery-open");
+    }
   });
 
   slideshowClose.addEventListener("click", function(event) {
@@ -59,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function(){
       dir = next;
     } else {
       dir = prev;
-    };
+    }
     dir.addEventListener("click", function(event) {
       event.preventDefault();
       for (var i = 0; i < slides.length; i++) {
@@ -71,21 +83,21 @@ document.addEventListener("DOMContentLoaded", function(){
               i = 0;
             } else {
               i++;
-            };
+            }
           } else if (sign < 0) {
             if (i === 0) {
               i = slides.length - 1;
             } else {
               i--;
-            };
-          };
+            }
+          }
           slides[i].classList.add("slideshow__picture--active");
           text[i].classList.add("slideshow__text--active");
           number.innerHTML = i + 1;
-        };
-      };
+        }
+      }
     });
-  };
+  }
 
   // ####next slide
 
@@ -93,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   //####previous slide
 
-   slideDirection(-1);
+  slideDirection(-1);
 
   //#Thumbnails
 
@@ -107,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function(){
       event.preventDefault();
       thumbs.classList.toggle("slideshow__thumbnails--active");
     });
-  };
+  }
 
   thumbswitch(thumbsToggle);
   thumbswitch(thumbsButton);
@@ -128,8 +140,8 @@ document.addEventListener("DOMContentLoaded", function(){
       for (var i = 0; i < thumbItems.length; i++) {
         slides[i].classList.remove("slideshow__picture--active");
         text[i].classList.remove("slideshow__text--active");
-      };
-    };
+      }
+    }
     for (var i = 0; i < thumbItems.length; i++) {
       if (thumbItems[i].classList.contains("slideshow__thumb-item--active")) {
         slides[i].classList.add("slideshow__picture--active");
@@ -137,8 +149,8 @@ document.addEventListener("DOMContentLoaded", function(){
         number.innerHTML = i + 1;
         thumbItems[i].classList.remove("slideshow__thumb-item--active");
         thumbs.classList.remove("slideshow__thumbnails--active");
-      };
-    };
+      }
+    }
   });
 
   //#Social
@@ -167,25 +179,25 @@ document.addEventListener("DOMContentLoaded", function(){
       event.preventDefault();
       if (!pinterest.classList.contains("slideshow__share--over")) {
         pinterest.classList.add("slideshow__share--over");
-      };
+      }
     });
     picture[i].addEventListener("mouseleave", function(event) {
       event.preventDefault();
       if (pinterest.classList.contains("slideshow__share--over")) {
         pinterest.classList.remove("slideshow__share--over");
-      };
+      }
     });
-  };
+  }
 
-  pinterest.addEventListener("mouseenter", function(event) {
+  pinterest.addEventListener("mouseenter", function() {
     if (!pinterest.classList.contains("slideshow__share--over")) {
       pinterest.classList.add("slideshow__share--over");
-    };
+    }
   });
 
-  pinterest.addEventListener("mouseleave", function(event) {
+  pinterest.addEventListener("mouseleave", function() {
     if (pinterest.classList.contains("slideshow__share--over")) {
       pinterest.classList.remove("slideshow__share--over");
-    };
+    }
   });
 });
